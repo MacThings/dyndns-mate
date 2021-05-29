@@ -124,8 +124,9 @@ class ViewController: NSViewController {
     }
     
     @IBAction func create_account(_ sender: Any) {
-        if let url = URL(string: "https://www.noip.com/sign-up"),
-            NSWorkspace.shared.open(url) {
+        let company = UserDefaults.standard.string(forKey: "Company")
+        if company == "ChangeIP" {
+            NSWorkspace.shared.open(URL(string: "https://www.noip.com/sign-up")!)
         }
     }
     
