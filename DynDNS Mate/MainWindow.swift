@@ -28,6 +28,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
         
         check_status_init()
 
@@ -149,11 +150,11 @@ class ViewController: NSViewController {
         let daemon_check = UserDefaults.standard.bool(forKey: "Daemon")
         if daemon_check == true {
             self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
-            self.daemon_button.title = "Uninstall daemon"
+            self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
             syncShellExec(path: scriptPath, args: ["uninstall_daemon"])
         } else {
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
-            self.daemon_button.title = "Install daemon"
+            self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
             syncShellExec(path: scriptPath, args: ["install_daemon"])
         }
         
@@ -183,10 +184,10 @@ class ViewController: NSViewController {
         let daemon_check = UserDefaults.standard.bool(forKey: "Daemon")
         if daemon_check == true {
             self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
-            self.daemon_button.title = "Uninstall daemon"
+            self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
         } else {
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
-            self.daemon_button.title = "Install daemon"
+            self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
         }
     }
     

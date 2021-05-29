@@ -14,7 +14,8 @@
 		2A4019D62662358D00D51495 /* script.command in script */ = {isa = PBXBuildFile; fileRef = 2A4019D12662349300D51495 /* script.command */; };
 		2A4019E12662ACAF00D51495 /* de.slsoft.dyndnsmate.plist in script */ = {isa = PBXBuildFile; fileRef = 2A4019DD2662AC9000D51495 /* de.slsoft.dyndnsmate.plist */; };
 		2A4019EA2662ADCB00D51495 /* PlistBuddy in bin */ = {isa = PBXBuildFile; fileRef = 2A4019E42662ADB400D51495 /* PlistBuddy */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		2A5036622662E66300C39BE8 /* dyndnsmate.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A5036612662E66300C39BE8 /* dyndnsmate.html */; };
+		2A5036682662E94000C39BE8 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5036672662E94000C39BE8 /* About.swift */; };
+		2A5036722662F25100C39BE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5036702662F25100C39BE8 /* Localizable.strings */; };
 		B2EBFC6644B95B2C7BFE6EDE /* Pods_DynDNS_Mate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974B8C2FE08825770646FAAD /* Pods_DynDNS_Mate.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,9 @@
 		2A4019DD2662AC9000D51495 /* de.slsoft.dyndnsmate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = de.slsoft.dyndnsmate.plist; sourceTree = "<group>"; };
 		2A4019E42662ADB400D51495 /* PlistBuddy */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = PlistBuddy; sourceTree = "<group>"; };
 		2A5036612662E66300C39BE8 /* dyndnsmate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = dyndnsmate.html; sourceTree = "<group>"; };
+		2A5036672662E94000C39BE8 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
+		2A50366E2662F11400C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		2A5036712662F25100C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		974B8C2FE08825770646FAAD /* Pods_DynDNS_Mate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DynDNS_Mate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F20305A13F2F5C3986CC18 /* Pods-DynDNS Mate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynDNS Mate.release.xcconfig"; path = "Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate.release.xcconfig"; sourceTree = "<group>"; };
 		FCF181CE8EDBACE8CD6C34B4 /* Pods-DynDNS Mate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynDNS Mate.debug.xcconfig"; path = "Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,10 +101,12 @@
 				2A4019E32662ADB400D51495 /* bin */,
 				2A4019D02662349300D51495 /* script */,
 				2A4019BD2662305600D51495 /* AppDelegate.swift */,
+				2A5036672662E94000C39BE8 /* About.swift */,
 				2A4019BF2662305600D51495 /* MainWindow.swift */,
 				2A4019C12662305600D51495 /* Assets.xcassets */,
 				2A4019C32662305600D51495 /* Main.storyboard */,
 				2A4019C62662305600D51495 /* Info.plist */,
+				2A5036702662F25100C39BE8 /* Localizable.strings */,
 				2A4019C72662305600D51495 /* DynDNS_Mate.entitlements */,
 				2A5036612662E66300C39BE8 /* dyndnsmate.html */,
 			);
@@ -187,6 +193,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 2A4019B12662305600D51495;
 			productRefGroup = 2A4019BB2662305600D51495 /* Products */;
@@ -204,7 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4019C22662305600D51495 /* Assets.xcassets in Resources */,
-				2A5036622662E66300C39BE8 /* dyndnsmate.html in Resources */,
+				2A5036722662F25100C39BE8 /* Localizable.strings in Resources */,
 				2A4019C52662305600D51495 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4019C02662305600D51495 /* MainWindow.swift in Sources */,
+				2A5036682662E94000C39BE8 /* About.swift in Sources */,
 				2A4019BE2662305600D51495 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,8 +296,17 @@
 			isa = PBXVariantGroup;
 			children = (
 				2A4019C42662305600D51495 /* Base */,
+				2A50366E2662F11400C39BE8 /* de */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2A5036702662F25100C39BE8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5036712662F25100C39BE8 /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -299,6 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -360,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -419,6 +438,7 @@
 				CODE_SIGN_ENTITLEMENTS = "DynDNS Mate/DynDNS_Mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4ATFWV7M4B;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "DynDNS Mate/Info.plist";
@@ -426,7 +446,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dyndnsmate.slsoft.de;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -442,6 +462,7 @@
 				CODE_SIGN_ENTITLEMENTS = "DynDNS Mate/DynDNS_Mate.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4ATFWV7M4B;
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "DynDNS Mate/Info.plist";
@@ -449,7 +470,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dyndnsmate.slsoft.de;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

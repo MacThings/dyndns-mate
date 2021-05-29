@@ -1,0 +1,162 @@
+/* Class = "NSMenuItem"; title = "DynDNS Manager"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "DynDNS Manager";
+
+/* Class = "NSMenuItem"; title = "Quit DynDNS Manager"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "DynDNS Manager beenden";
+
+/* Class = "NSMenuItem"; title = "About DynDNS Manager"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "Über DynDNS Manager";
+
+/* Class = "NSMenuItem"; title = "Edit"; ObjectID = "5QF-Oa-p0T"; */
+"5QF-Oa-p0T.title" = "Bearbeiten";
+
+/* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
+"6dh-zS-Vam.title" = "Redo";
+
+/* Class = "NSMenuItem"; title = "Strato"; ObjectID = "6u7-Ua-j8J"; */
+"6u7-Ua-j8J.title" = "Strato";
+
+/* Class = "NSMenuItem"; title = "Please select"; ObjectID = "8Yz-yu-cH9"; */
+"8Yz-yu-cH9.title" = "Bitte wählen";
+
+/* Class = "NSTextFieldCell"; title = "Update every"; ObjectID = "Ad8-GH-prU"; */
+"Ad8-GH-prU.title" = "Aktualisiere in";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "aJD-TC-jpm"; */
+"aJD-TC-jpm.title" = "Label";
+
+/* Class = "NSMenuItem"; title = "Window"; ObjectID = "aUF-d1-5bR"; */
+"aUF-d1-5bR.title" = "Window";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSMenuItem"; title = "Check for updates ..."; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Nach Updates suchen ...";
+
+/* Class = "NSMenuItem"; title = "DuckDNS"; ObjectID = "c6X-14-Ors"; */
+"c6X-14-Ors.title" = "DuckDNS";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "CcU-3z-f1a"; */
+"CcU-3z-f1a.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "Chi-lE-Kz4"; */
+"Chi-lE-Kz4.title" = "Label";
+
+/* Class = "NSTextFieldCell"; title = "IP address"; ObjectID = "DCS-ZV-R4h"; */
+"DCS-ZV-R4h.title" = "IP Addresse";
+
+/* Class = "NSTextFieldCell"; title = "m"; ObjectID = "dPq-Gq-eP6"; */
+"dPq-Gq-eP6.title" = "M";
+
+/* Class = "NSMenuItem"; title = "Undo"; ObjectID = "dRJ-4n-Yzg"; */
+"dRJ-4n-Yzg.title" = "Undo";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
+"F2S-fz-NVQ.title" = "Hilfe";
+
+/* Class = "NSTextFieldCell"; title = "Label"; ObjectID = "fAJ-MN-qmS"; */
+"fAJ-MN-qmS.title" = "Label";
+
+/* Class = "NSMenuItem"; title = "DynDNS Manager Help"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "DynDNS Mate Hilfe";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "gbY-5G-ute"; */
+"gbY-5G-ute.title" = "Box";
+
+/* Class = "NSMenu"; title = "Services"; ObjectID = "hz9-B4-Xy5"; */
+"hz9-B4-Xy5.title" = "Services";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "ChangeIP"; ObjectID = "JTE-R2-AqW"; */
+"JTE-R2-AqW.title" = "ChangeIP";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "Alle anzeigen";
+
+/* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "LE2-aR-0XJ"; */
+"LE2-aR-0XJ.title" = "Alle nach vorne holen";
+
+/* Class = "NSMenuItem"; title = "EasyDNS"; ObjectID = "leq-Sn-SYi"; */
+"leq-Sn-SYi.title" = "EasyDNS";
+
+/* Class = "NSTextFieldCell"; title = "Username / E-Mail address"; ObjectID = "LHE-VL-ECe"; */
+"LHE-VL-ECe.title" = "Benutzername / E-Mail Addresse";
+
+/* Class = "NSViewController"; title = "About"; ObjectID = "m0Z-GC-FNR"; */
+"m0Z-GC-FNR.title" = "About";
+
+/* Class = "NSMenuItem"; title = "Hurricane Electric"; ObjectID = "MWX-oa-iOr"; */
+"MWX-oa-iOr.title" = "Hurricane Electric";
+
+/* Class = "NSTextFieldCell"; title = "Daemon mode"; ObjectID = "n9W-pW-5Y3"; */
+"n9W-pW-5Y3.title" = "Daemon Modus";
+
+/* Class = "NSMenuItem"; title = "Services"; ObjectID = "NMo-om-nkz"; */
+"NMo-om-nkz.title" = "Services";
+
+/* Class = "NSMenuItem"; title = "Hide DynDNS Manager"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "DynDNS Mate ausblenden";
+
+/* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
+"OY7-WF-poV.title" = "Minimize";
+
+/* Class = "NSButtonCell"; title = "Install daemon"; ObjectID = "qvG-s7-T5k"; */
+"qvG-s7-T5k.title" = "Installiere Daemon";
+
+/* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "R4o-n2-Eq4"; */
+"R4o-n2-Eq4.title" = "Zoom";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "Rly-gU-aaO"; */
+"Rly-gU-aaO.title" = "Box";
+
+/* Class = "NSMenu"; title = "Window"; ObjectID = "Td7-aD-5lo"; */
+"Td7-aD-5lo.title" = "Window";
+
+/* Class = "NSTextFieldCell"; title = "Update status"; ObjectID = "uIc-8h-eBQ"; */
+"uIc-8h-eBQ.title" = "Update Status";
+
+/* Class = "NSMenu"; title = "DynDNS Manager"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "DynDNS Mate";
+
+/* Class = "NSMenuItem"; title = "Cut"; ObjectID = "uRl-iY-unG"; */
+"uRl-iY-unG.title" = "Ausschneiden";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "Andere ausblenden";
+
+/* Class = "NSMenuItem"; title = "NoIp"; ObjectID = "VyQ-xb-L21"; */
+"VyQ-xb-L21.title" = "NoIp";
+
+/* Class = "NSMenu"; title = "Edit"; ObjectID = "W48-6f-4Dl"; */
+"W48-6f-4Dl.title" = "Edit";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "WI2-Qv-ptI"; */
+"WI2-Qv-ptI.title" = "Box";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "Hilfe";
+
+/* Class = "NSTextFieldCell"; title = "Password / Key"; ObjectID = "wud-V6-MO7"; */
+"wud-V6-MO7.title" = "Passwort / Schlüssel";
+
+/* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
+"x3v-GG-iWU.title" = "Kopieren";
+
+/* Class = "NSViewController"; title = "DynDNS Mate"; ObjectID = "XfG-lQ-9wD"; */
+"XfG-lQ-9wD.title" = "DynDNS Mate";
+
+/* Class = "NSTextFieldCell"; title = "Hostname"; ObjectID = "yc3-kJ-rRP"; */
+"yc3-kJ-rRP.title" = "Hostname";
+
+/* Class = "NSMenuItem"; title = "FreeDNS"; ObjectID = "yOc-BE-SNx"; */
+"yOc-BE-SNx.title" = "FreeDNS";
+
+/* Class = "NSMenuItem"; title = "DynDns"; ObjectID = "Yv5-9q-gYF"; */
+"Yv5-9q-gYF.title" = "DynDns";
+
+/* Class = "NSButtonCell"; title = "Update"; ObjectID = "zQS-JO-B4h"; */
+"zQS-JO-B4h.title" = "Update";
+
