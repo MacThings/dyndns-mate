@@ -13,14 +13,13 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var daemon_dot: NSImageView!
     @IBOutlet weak var status_dot: NSImageView!
-    
-    
+        
     @IBOutlet weak var company_logo: NSImageView!
-    
     @IBOutlet weak var company_selector: NSPopUpButton!
     
     @IBOutlet weak var domain: NSTextField!
     @IBOutlet weak var username: NSTextField!
+    @IBOutlet weak var username_label: NSTextField!
     @IBOutlet weak var password: NSSecureTextField!
     
     @IBOutlet weak var daemon_button: NSButton!

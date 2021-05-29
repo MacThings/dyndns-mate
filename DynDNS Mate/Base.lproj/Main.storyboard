@@ -242,7 +242,7 @@
                                 </view>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4U-MP-kbX">
-                                <rect key="frame" x="287" y="11" width="147" height="32"/>
+                                <rect key="frame" x="284" y="11" width="150" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zQS-JO-B4h">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -268,7 +268,7 @@
                                 </view>
                             </box>
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH1-8Q-AL6">
-                                <rect key="frame" x="288" y="214" width="145" height="25"/>
+                                <rect key="frame" x="287" y="214" width="145" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="Spz-UM-k9Z">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -293,7 +293,7 @@
                                 </connections>
                             </popUpButton>
                             <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="WI2-Qv-ptI">
-                                <rect key="frame" x="287" y="156" width="146" height="46"/>
+                                <rect key="frame" x="286" y="156" width="146" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="I3R-sL-DOk">
                                     <rect key="frame" x="3" y="3" width="140" height="40"/>
@@ -331,7 +331,7 @@
                                 </view>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNo-GL-ea3">
-                                <rect key="frame" x="294" y="137" width="79" height="16"/>
+                                <rect key="frame" x="293" y="138" width="79" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="IP address" id="DCS-ZV-R4h">
                                     <font key="font" metaFont="system"/>
@@ -340,14 +340,14 @@
                                 </textFieldCell>
                             </textField>
                             <box fixedFrame="YES" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="CcU-3z-f1a">
-                                <rect key="frame" x="287" y="101" width="146" height="37"/>
+                                <rect key="frame" x="286" y="101" width="146" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="bCU-a6-Cmo">
                                     <rect key="frame" x="3" y="3" width="140" height="31"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xu2-yS-Kff">
-                                            <rect key="frame" x="4" y="6" width="133" height="21"/>
+                                            <rect key="frame" x="-2" y="6" width="144" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="aJD-TC-jpm">
                                                 <font key="font" metaFont="systemBold" size="17"/>
@@ -362,7 +362,7 @@
                                 </view>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wfj-dO-oWN">
-                                <rect key="frame" x="288" y="81" width="86" height="16"/>
+                                <rect key="frame" x="287" y="78" width="86" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Update every" id="Ad8-GH-prU">
                                     <font key="font" metaFont="system"/>
@@ -371,7 +371,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9c-gn-tMl">
-                                <rect key="frame" x="377" y="78" width="36" height="21"/>
+                                <rect key="frame" x="376" y="75" width="36" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" drawsBackground="YES" id="OqB-gg-OMn">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="udn-9U-Sw5"/>
@@ -384,7 +384,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hic-0u-EpZ">
-                                <rect key="frame" x="416" y="81" width="16" height="16"/>
+                                <rect key="frame" x="416" y="78" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="m" id="dPq-Gq-eP6">
                                     <font key="font" metaFont="system"/>
@@ -393,7 +393,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgY-76-oSW">
-                                <rect key="frame" x="287" y="39" width="147" height="32"/>
+                                <rect key="frame" x="284" y="39" width="150" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Install daemon" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qvG-s7-T5k">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -403,6 +403,10 @@
                                     <action selector="daemon:" target="XfG-lQ-9wD" id="jKy-d2-jP9"/>
                                 </connections>
                             </button>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="f26-TF-524">
+                                <rect key="frame" x="283" y="8" width="5" height="233"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
@@ -414,6 +418,7 @@
                         <outlet property="password" destination="Q9c-6n-v7F" id="gUd-vb-xlM"/>
                         <outlet property="status_dot" destination="12A-IR-GGU" id="MHG-W2-vwL"/>
                         <outlet property="username" destination="jip-yY-JmZ" id="A5O-Nd-Qf9"/>
+                        <outlet property="username_label" destination="HZK-8a-Fd2" id="cXI-jj-1NR"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
