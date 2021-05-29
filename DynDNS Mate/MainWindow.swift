@@ -17,6 +17,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var company_logo: NSImageView!
     @IBOutlet weak var company_selector: NSPopUpButton!
     
+    @IBOutlet weak var create_account: NSButton!
+    
     @IBOutlet weak var domain: NSTextField!
     @IBOutlet weak var username: NSTextField!
     @IBOutlet weak var username_label: NSTextField!
@@ -118,6 +120,12 @@ class ViewController: NSViewController {
         } else if gettitle == "Strato"{
             self.company_logo.image=NSImage(named: "strato_logo")
             self.username.isEnabled = true
+        }
+    }
+    
+    @IBAction func create_account(_ sender: Any) {
+        if let url = URL(string: "https://www.noip.com/sign-up"),
+            NSWorkspace.shared.open(url) {
         }
     }
     
