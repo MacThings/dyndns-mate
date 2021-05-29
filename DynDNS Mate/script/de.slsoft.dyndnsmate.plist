@@ -12,7 +12,7 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>/bin/bash</string>
-		<string>/usr/local/bin/dyndnsmanager</string>
+		<string>/usr/local/bin/dyndnsmate</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

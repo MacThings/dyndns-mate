@@ -86,7 +86,7 @@ function check_status()
 
 function check_daemon()
 {
-    daemon_check=$( launchctl list |grep dyndnsmate )
+    daemon_check=$( launchctl list |grep de.slsoft.dyndnsmate )
     if [[ "$daemon_check" = "" ]]; then
         _helpDefaultWriteBool NO "Daemon"
         rm /usr/local/bin/dyndnsmate
