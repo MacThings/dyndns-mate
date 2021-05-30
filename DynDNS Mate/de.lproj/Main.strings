@@ -154,8 +154,11 @@
 /* Class = "NSMenuItem"; title = "FreeDNS"; ObjectID = "yOc-BE-SNx"; */
 "yOc-BE-SNx.title" = "FreeDNS";
 
-/* Class = "NSMenuItem"; title = "DynDns"; ObjectID = "Yv5-9q-gYF"; */
+/* Class = "NSMenuItem"; title = "Dyn"; ObjectID = "Yv5-9q-gYF"; */
 "Yv5-9q-gYF.title" = "DynDns";
+
+/* Class = "NSButtonCell"; title = "Create account"; ObjectID = "Zma-Rc-x6z"; */
+"Zma-Rc-x6z.title" = "Account erstellen";
 
 /* Class = "NSButtonCell"; title = "Update"; ObjectID = "zQS-JO-B4h"; */
 "zQS-JO-B4h.title" = "Update";
