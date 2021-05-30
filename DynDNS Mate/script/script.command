@@ -126,8 +126,8 @@ function duckdns()
 {
     hostname=$( _helpDefaultRead "Domain" )
     password=$( _helpDefaultRead "Password" )
-    update=$( echo url="https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip" | curl -k -K - )
-    scheme=$( echo "echo url=\"https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip\" | curl -k -K -" )
+    update=$( curl -s -k https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip )
+    scheme=$( echo "curl -s -k https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip" )
     
     set_plist
 }
