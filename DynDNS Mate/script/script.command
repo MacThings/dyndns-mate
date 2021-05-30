@@ -126,13 +126,13 @@ function duckdns()
 {
     hostname=$( _helpDefaultRead "Domain" )
     password=$( _helpDefaultRead "Password" )
-    update=$( curl https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip )
-    scheme=$( echo "curl https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip" )
+    update=$( echo url="https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip" | curl -k -K - )
+    scheme=$( echo "echo url=\"https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip\" | curl -k -K -" )
     
     set_plist
 }
 
-function dyndns()
+function dyn()
 {
     hostname=$( _helpDefaultRead "Domain" )
     username=$( _helpDefaultRead "Username" )

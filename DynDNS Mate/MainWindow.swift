@@ -59,7 +59,7 @@ class ViewController: NSViewController {
             self.company_logo.image=NSImage(named: "duckdns_logo")
             self.username.isEnabled = false
             self.username.stringValue = ""
-        } else if getcompany == "DynDns"{
+        } else if getcompany == "Dyn"{
             self.company_logo.image=NSImage(named: "dyndns_logo")
             self.username.isEnabled = true
         } else if getcompany == "EasyDNS"{
@@ -101,8 +101,8 @@ class ViewController: NSViewController {
             self.company_logo.image=NSImage(named: "duckdns_logo")
             self.username.isEnabled = false
             self.username.stringValue = ""
-        } else if gettitle == "DynDns"{
-            self.company_logo.image=NSImage(named: "dyndns_logo")
+        } else if gettitle == "Dyn"{
+            self.company_logo.image=NSImage(named: "dyn_logo")
             self.username.isEnabled = true
         } else if gettitle == "EasyDNS"{
             self.company_logo.image=NSImage(named: "easydns_logo")
@@ -126,7 +126,21 @@ class ViewController: NSViewController {
     @IBAction func create_account(_ sender: Any) {
         let company = UserDefaults.standard.string(forKey: "Company")
         if company == "ChangeIP" {
-            NSWorkspace.shared.open(URL(string: "https://www.noip.com/sign-up")!)
+            NSWorkspace.shared.open(URL(string: "https://www.changeip.com")!)
+        } else if company == "DuckDNS" {
+            NSWorkspace.shared.open(URL(string: "https://www.duckdns.org")!)
+        } else if company == "Dyn" {
+            NSWorkspace.shared.open(URL(string: "https://account.dyn.com")!)
+        } else if company == "EasyDNS" {
+            NSWorkspace.shared.open(URL(string: "https://easydns.com/dns")!)
+        } else if company == "FreeDNS" {
+            NSWorkspace.shared.open(URL(string: "https://freedns.afraid.org")!)
+        } else if company == "Hurricane Electric" {
+            NSWorkspace.shared.open(URL(string: "https://dns.he.net")!)
+        } else if company == "NoIp" {
+            NSWorkspace.shared.open(URL(string: "https://www.noip.com")!)
+        } else if company == "Strato" {
+            NSWorkspace.shared.open(URL(string: "https://www.strato.de")!)
         }
     }
     
@@ -136,8 +150,8 @@ class ViewController: NSViewController {
             syncShellExec(path: scriptPath, args: ["changeip"])
         } else if company == "DuckDNS" {
             syncShellExec(path: scriptPath, args: ["duckdns"])
-        } else if company == "DynDNS" {
-            syncShellExec(path: scriptPath, args: ["dyndns"])
+        } else if company == "Dyn" {
+            syncShellExec(path: scriptPath, args: ["dyn"])
         } else if company == "EasyDNS" {
             syncShellExec(path: scriptPath, args: ["easydns"])
         } else if company == "FreeDNS" {
