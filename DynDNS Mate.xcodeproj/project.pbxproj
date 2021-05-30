@@ -16,6 +16,7 @@
 		2A4019EA2662ADCB00D51495 /* PlistBuddy in bin */ = {isa = PBXBuildFile; fileRef = 2A4019E42662ADB400D51495 /* PlistBuddy */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2A5036682662E94000C39BE8 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5036672662E94000C39BE8 /* About.swift */; };
 		2A5036722662F25100C39BE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5036702662F25100C39BE8 /* Localizable.strings */; };
+		2A77A9FF2663AD7700DF0EE6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A77A9FD2663AD7700DF0EE6 /* InfoPlist.strings */; };
 		B2EBFC6644B95B2C7BFE6EDE /* Pods_DynDNS_Mate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974B8C2FE08825770646FAAD /* Pods_DynDNS_Mate.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		2A5036672662E94000C39BE8 /* About.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		2A50366E2662F11400C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2A5036712662F25100C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2A77A9FE2663AD7700DF0EE6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		974B8C2FE08825770646FAAD /* Pods_DynDNS_Mate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DynDNS_Mate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F20305A13F2F5C3986CC18 /* Pods-DynDNS Mate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynDNS Mate.release.xcconfig"; path = "Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate.release.xcconfig"; sourceTree = "<group>"; };
 		FCF181CE8EDBACE8CD6C34B4 /* Pods-DynDNS Mate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynDNS Mate.debug.xcconfig"; path = "Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				2A4019C12662305600D51495 /* Assets.xcassets */,
 				2A4019C32662305600D51495 /* Main.storyboard */,
 				2A4019C62662305600D51495 /* Info.plist */,
+				2A77A9FD2663AD7700DF0EE6 /* InfoPlist.strings */,
 				2A5036702662F25100C39BE8 /* Localizable.strings */,
 				2A4019C72662305600D51495 /* DynDNS_Mate.entitlements */,
 				2A5036612662E66300C39BE8 /* dyndnsmate.html */,
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4019C22662305600D51495 /* Assets.xcassets in Resources */,
+				2A77A9FF2663AD7700DF0EE6 /* InfoPlist.strings in Resources */,
 				2A5036722662F25100C39BE8 /* Localizable.strings in Resources */,
 				2A4019C52662305600D51495 /* Main.storyboard in Resources */,
 			);
@@ -307,6 +311,14 @@
 				2A5036712662F25100C39BE8 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		2A77A9FD2663AD7700DF0EE6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A77A9FE2663AD7700DF0EE6 /* de */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
