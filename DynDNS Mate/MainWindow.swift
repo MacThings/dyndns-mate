@@ -60,7 +60,7 @@ class ViewController: NSViewController {
             self.username.isEnabled = false
             self.username.stringValue = ""
         } else if getcompany == "Dyn"{
-            self.company_logo.image=NSImage(named: "dyndns_logo")
+            self.company_logo.image=NSImage(named: "dyn_logo")
             self.username.isEnabled = true
         } else if getcompany == "EasyDNS"{
             self.company_logo.image=NSImage(named: "easydns_logo")

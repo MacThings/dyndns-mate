@@ -270,7 +270,7 @@
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yH1-8Q-AL6">
                                 <rect key="frame" x="287" y="228" width="145" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="Spz-UM-k9Z">
+                                <popUpButtonCell key="cell" type="push" title="Please select" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="8Yz-yu-cH9" id="Spz-UM-k9Z">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="VgN-cI-yWJ">
@@ -278,7 +278,7 @@
                                             <menuItem title="Please select" id="8Yz-yu-cH9"/>
                                             <menuItem title="ChangeIP" id="JTE-R2-AqW"/>
                                             <menuItem title="DuckDNS" id="c6X-14-Ors"/>
-                                            <menuItem title="Dyn" id="Yv5-9q-gYF"/>
+                                            <menuItem title="Dyn" id="ZWz-Dg-g7c"/>
                                             <menuItem title="EasyDNS" id="leq-Sn-SYi"/>
                                             <menuItem title="FreeDNS" id="yOc-BE-SNx"/>
                                             <menuItem title="Hurricane Electric" id="MWX-oa-iOr"/>
