@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,11 +13,11 @@
 		2A4019C52662305600D51495 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4019C32662305600D51495 /* Main.storyboard */; };
 		2A4019D62662358D00D51495 /* script.command in script */ = {isa = PBXBuildFile; fileRef = 2A4019D12662349300D51495 /* script.command */; };
 		2A4019E12662ACAF00D51495 /* de.slsoft.dyndnsmate.plist in script */ = {isa = PBXBuildFile; fileRef = 2A4019DD2662AC9000D51495 /* de.slsoft.dyndnsmate.plist */; };
-		2A4019EA2662ADCB00D51495 /* PlistBuddy in bin */ = {isa = PBXBuildFile; fileRef = 2A4019E42662ADB400D51495 /* PlistBuddy */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		2A4019EA2662ADCB00D51495 /* PlistBuddy in bin */ = {isa = PBXBuildFile; fileRef = 2A4019E42662ADB400D51495 /* PlistBuddy */; };
 		2A5036682662E94000C39BE8 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5036672662E94000C39BE8 /* About.swift */; };
 		2A5036722662F25100C39BE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5036702662F25100C39BE8 /* Localizable.strings */; };
 		2A77A9FF2663AD7700DF0EE6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A77A9FD2663AD7700DF0EE6 /* InfoPlist.strings */; };
-		B2EBFC6644B95B2C7BFE6EDE /* Pods_DynDNS_Mate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974B8C2FE08825770646FAAD /* Pods_DynDNS_Mate.framework */; };
+		2AAE30FC2664FB6A0054634E /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2AAE30FB2664FB6A0054634E /* Sparkle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,9 +62,6 @@
 		2A50366E2662F11400C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2A5036712662F25100C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A77A9FE2663AD7700DF0EE6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		974B8C2FE08825770646FAAD /* Pods_DynDNS_Mate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DynDNS_Mate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4F20305A13F2F5C3986CC18 /* Pods-DynDNS Mate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynDNS Mate.release.xcconfig"; path = "Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate.release.xcconfig"; sourceTree = "<group>"; };
-		FCF181CE8EDBACE8CD6C34B4 /* Pods-DynDNS Mate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DynDNS Mate.debug.xcconfig"; path = "Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2EBFC6644B95B2C7BFE6EDE /* Pods_DynDNS_Mate.framework in Frameworks */,
+				2AAE30FC2664FB6A0054634E /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,8 +81,6 @@
 			children = (
 				2A4019BC2662305600D51495 /* DynDNS Mate */,
 				2A4019BB2662305600D51495 /* Products */,
-				5B5C216D3874B3A6CA72D870 /* Pods */,
-				B1D78B2FF8B43902998B011B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,23 +128,6 @@
 			path = bin;
 			sourceTree = "<group>";
 		};
-		5B5C216D3874B3A6CA72D870 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FCF181CE8EDBACE8CD6C34B4 /* Pods-DynDNS Mate.debug.xcconfig */,
-				C4F20305A13F2F5C3986CC18 /* Pods-DynDNS Mate.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		B1D78B2FF8B43902998B011B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				974B8C2FE08825770646FAAD /* Pods_DynDNS_Mate.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,13 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A4019CA2662305600D51495 /* Build configuration list for PBXNativeTarget "DynDNS Mate" */;
 			buildPhases = (
-				33AE113F4C30D1B31597AF6D /* [CP] Check Pods Manifest.lock */,
 				2A4019B62662305600D51495 /* Sources */,
 				2A4019B72662305600D51495 /* Frameworks */,
 				2A4019B82662305600D51495 /* Resources */,
 				2A4019D52662358200D51495 /* script */,
 				2A4019E92662ADBE00D51495 /* bin */,
-				B2975369CD68EFF7E30AEE90 /* [CP] Embed Pods Frameworks */,
 				2A50365F2662E5DD00C39BE8 /* Zip App and send to Homeshare */,
 			);
 			buildRules = (
@@ -171,6 +147,9 @@
 			dependencies = (
 			);
 			name = "DynDNS Mate";
+			packageProductDependencies = (
+				2AAE30FB2664FB6A0054634E /* Sparkle */,
+			);
 			productName = "DynDNS Manager";
 			productReference = 2A4019BA2662305600D51495 /* DynDNS Mate.app */;
 			productType = "com.apple.product-type.application";
@@ -199,6 +178,9 @@
 				de,
 			);
 			mainGroup = 2A4019B12662305600D51495;
+			packageReferences = (
+				2AAE30FA2664FB6A0054634E /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			productRefGroup = 2A4019BB2662305600D51495 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -239,46 +221,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -r /Applications/DynDNS\\ Mate.app\ncp -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app /Applications/\nif [ -d /Volumes/Homeshare/Xcode/dyndnsmate ]; then\ncp \"/Users/luigi/Documents/Xcode/dyndns-mate/DynDNS Mate/dyndnsmate.html\" \"/Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.html\"\nrm /Volumes/Homeshare/Xcode/dyndns-mate/upload/dyndnsmate.zip 2> /dev/null\ncd /Applications\nditto -c -k --sequesterRsrc --keepParent DynDNS\\ Mate.app /Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.zip\nfi\n";
-		};
-		33AE113F4C30D1B31597AF6D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DynDNS Mate-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B2975369CD68EFF7E30AEE90 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DynDNS Mate/Pods-DynDNS Mate-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -r /Applications/DynDNS\\ Mate.app\nrm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/bin/Sparkle.framework\nrm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/script/Sparkle.framework\ncp -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app /Applications/\nif [ -d /Volumes/Homeshare/Xcode/dyndnsmate ]; then\ncp \"/Users/luigi/Documents/Xcode/dyndns-mate/DynDNS Mate/dyndnsmate.html\" \"/Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.html\"\nrm /Volumes/Homeshare/Xcode/dyndns-mate/upload/dyndnsmate.zip 2> /dev/null\ncd /Applications\nditto -c -k --sequesterRsrc --keepParent DynDNS\\ Mate.app /Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.zip\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -443,15 +386,14 @@
 		};
 		2A4019CB2662305600D51495 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCF181CE8EDBACE8CD6C34B4 /* Pods-DynDNS Mate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DynDNS Mate/DynDNS_Mate.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = 4ATFWV7M4B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "DynDNS Mate/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -461,21 +403,21 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dyndnsmate.slsoft.de;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		2A4019CC2662305600D51495 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4F20305A13F2F5C3986CC18 /* Pods-DynDNS Mate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "DynDNS Mate/DynDNS_Mate.entitlements";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = 4ATFWV7M4B;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = NO;
 				INFOPLIST_FILE = "DynDNS Mate/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -485,6 +427,7 @@
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dyndnsmate.slsoft.de;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -511,6 +454,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2AAE30FA2664FB6A0054634E /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.26.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2AAE30FB2664FB6A0054634E /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AAE30FA2664FB6A0054634E /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A4019B22662305600D51495 /* Project object */;
 }
