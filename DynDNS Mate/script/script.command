@@ -197,6 +197,13 @@ function strato()
     set_plist
 }
 
+### Tools Section ###
+function show_ip()
+{
+    hostname=$( _helpDefaultRead "ShowIP" )
+    dig +short "$hostname"
+}
+
 $1
 exit 0
 

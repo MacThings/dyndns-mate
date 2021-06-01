@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0D8ADD26666DAE0080B72A /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D8ADC26666DAE0080B72A /* Tools.swift */; };
 		2A4019BE2662305600D51495 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4019BD2662305600D51495 /* AppDelegate.swift */; };
 		2A4019C02662305600D51495 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4019BF2662305600D51495 /* MainWindow.swift */; };
 		2A4019C22662305600D51495 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A4019C12662305600D51495 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A0D8ADC26666DAE0080B72A /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		2A4019BA2662305600D51495 /* DynDNS Mate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DynDNS Mate.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4019BD2662305600D51495 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A4019BF2662305600D51495 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				2A4019BD2662305600D51495 /* AppDelegate.swift */,
 				2A5036672662E94000C39BE8 /* About.swift */,
 				2A4019BF2662305600D51495 /* MainWindow.swift */,
+				2A0D8ADC26666DAE0080B72A /* Tools.swift */,
 				2A4019C12662305600D51495 /* Assets.xcassets */,
 				2A4019C32662305600D51495 /* Main.storyboard */,
 				2A4019C62662305600D51495 /* Info.plist */,
@@ -233,6 +236,7 @@
 				2A4019C02662305600D51495 /* MainWindow.swift in Sources */,
 				2A5036682662E94000C39BE8 /* About.swift in Sources */,
 				2A4019BE2662305600D51495 /* AppDelegate.swift in Sources */,
+				2A0D8ADD26666DAE0080B72A /* Tools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
