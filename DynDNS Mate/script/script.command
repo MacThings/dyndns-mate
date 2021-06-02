@@ -52,7 +52,7 @@ function _helpDefaultDelete()
 }
 
 real_ip=$( curl ipecho.net/plain )
-hostname=$( _helpDefaultRead "Domain" )
+hostname=$( _helpDefaultRead "Hostname" )
 dyndns_ip=$( dig +short $hostname )
 _helpDefaultWrite "IP" "$real_ip"
 
@@ -73,7 +73,7 @@ function set_plist()
 function check_status()
 {
     real_ip=$( curl ipecho.net/plain )
-    hostname=$( _helpDefaultRead "Domain" )
+    hostname=$( _helpDefaultRead "Hostname" )
     dyndns_ip=$( dig +short $hostname )
     
     if [[ "$real_ip" = "$dyndns_ip" ]]; then
@@ -113,8 +113,8 @@ function uninstall_daemon()
 
 function changeip()
 {
-    hostname=$( _helpDefaultRead "Domain" )
-    username=$( _helpDefaultRead "Username" )
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl https://nic.changeip.com/nic/update&u=$username&p=$password&hostname=$hostname&ip=$real_ip&set=1 )
     scheme=$( echo "curl https://nic.changeip.com/nic/update&u=$username&p=$password&hostname=$hostname&ip=$real_ip&set=1" )
@@ -124,7 +124,7 @@ function changeip()
 
 function duckdns()
 {
-    hostname=$( _helpDefaultRead "Domain" )
+    hostname=$( _helpDefaultRead "Hostname" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl -s -k https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip )
     scheme=$( echo "curl -s -k https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip" )
@@ -134,8 +134,8 @@ function duckdns()
 
 function dyn()
 {
-    hostname=$( _helpDefaultRead "Domain" )
-    username=$( _helpDefaultRead "Username" )
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl -4 -s "https://$username:$password@members.dyndns.org/nic/update?hostname=$hostname&myip=$real_ip" )
     scheme=$( echo "curl -4 -s \"https://$username:$password@members.dyndns.org/nic/update?hostname=$hostname&myip=$real_ip\"" )
@@ -145,8 +145,8 @@ function dyn()
 
 function easydns()
 {
-    hostname=$( _helpDefaultRead "Domain" )
-    username=$( _helpDefaultRead "Username" )
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl --silent --user "$username:$password" https://members.easydns.com/dyn/dyndns.php?wildcard=off&hostname=$hostname&myip=$real_ip )
     scheme=$( echo "curl --silent --user \"$username:$password\" https://members.easydns.com/dyn/dyndns.php?wildcard=off&hostname=$hostname&myip=$real_ip" )
@@ -156,8 +156,8 @@ function easydns()
 
 function freedns()
 {
-    hostname=$( _helpDefaultRead "Domain" )
-    username=$( _helpDefaultRead "Username" )
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl https://$username:$password@freedns.afraid.org/nic/update?hostname=$hostname&myip=$real_ip )
     scheme=$( echo "https://$username:$password@freedns.afraid.org/nic/update?hostname=$hostname&myip=$real_ip" )
@@ -167,7 +167,7 @@ function freedns()
 
 function hurricane()
 {
-    hostname=$( _helpDefaultRead "Domain" )
+    hostname=$( _helpDefaultRead "Hostname" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl https://dyn.dns.he.net/nic/update?hostname=$hostname&password=$password&myip=$real_ip )
     scheme=$( echo "https://dyn.dns.he.net/nic/update?hostname=$hostname&password=$password&myip=$real_ip" )
@@ -177,8 +177,8 @@ function hurricane()
 
 function noip()
 {
-    hostname=$( _helpDefaultRead "Domain" )
-    username=$( _helpDefaultRead "Username" )
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl -s -k -u $username:$password "https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip" )
     scheme=$( echo "curl -s -k -u $username:$password \"https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip\"" )
@@ -188,8 +188,8 @@ function noip()
 
 function strato()
 {
-    hostname=$( _helpDefaultRead "Domain" )
-    username=$( _helpDefaultRead "Username" )
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
     password=$( _helpDefaultRead "Password" )
     update=$( curl --silent --show-error --insecure --user $username:$password https://dyndns.strato.com/nic/update?hostname=&hostname )
     scheme=$( echo "curl --silent --show-error --insecure --user $username:$password https://dyndns.strato.com/nic/update?hostname=&hostname" )
