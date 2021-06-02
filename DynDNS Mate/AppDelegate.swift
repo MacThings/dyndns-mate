@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
+        UserDefaults.standard.removeObject(forKey: "HostnameTools")
         // Insert code here to tear down your application
     }
 

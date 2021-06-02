@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AVFoundation
 
 
 class Tools: NSViewController {
@@ -19,28 +20,80 @@ class Tools: NSViewController {
     @IBOutlet weak var ping_bt: NSButton!
     @IBOutlet weak var dig_bt: NSButton!
     @IBOutlet weak var whois_bt: NSButton!
-    @IBOutlet weak var geoip_bt: NSButton!
-    
+     
     @IBOutlet weak var hostname_field: NSTextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
-        //output_window.font = NSFont(name: Arial, size: 10.0)
+        output_window.font = NSFont(name: "Menlo", size: CGFloat(12))
 }
 
     @objc func cancel(_ sender: Any?) {
         self.view.window?.close()
     }
-    
-    
-    
+
     @IBAction func show_ip(_ sender: Any) {
+        input_check()
         output_window.textStorage?.mutableString.setString("")
-        syncShellExec(path: scriptPath, args: ["show_ip"])
+        output_window.string += NSLocalizedString("The IP address of", comment: "") + " " + hostname_field.stringValue + " " + NSLocalizedString("is:", comment: "") + "\n\n"
+        DispatchQueue.global(qos: .background).async {
+            self.syncShellExec(path: self.scriptPath, args: ["show_ip"])
+                DispatchQueue.main.async {
+            }
+        }
     }
     
+    @IBAction func ping(_ sender: Any) {
+        input_check()
+        output_window.textStorage?.mutableString.setString("")
+        DispatchQueue.global(qos: .background).async {
+            self.syncShellExec(path: self.scriptPath, args: ["ping_host"])
+                DispatchQueue.main.async {
+            }
+        }
+    }
+    
+    @IBAction func dig(_ sender: Any) {
+        input_check()
+        output_window.textStorage?.mutableString.setString("")
+        DispatchQueue.global(qos: .background).async {
+            self.syncShellExec(path: self.scriptPath, args: ["dig_host"])
+                DispatchQueue.main.async {
+            }
+        }
+    }
+    
+    @IBAction func whois(_ sender: Any) {
+        input_check()
+        output_window.textStorage?.mutableString.setString("")
+        DispatchQueue.global(qos: .background).async {
+            self.syncShellExec(path: self.scriptPath, args: ["whois_host"])
+                DispatchQueue.main.async {
+            }
+        }
+    }
+    
+    func input_check() {
+        let host = hostname_field.stringValue
+        UserDefaults.standard.set(host, forKey: "HostnameTools")
+        self.syncShellExec(path: self.scriptPath, args: ["check_input"])
+        
+        let hostcheck = UserDefaults.standard.bool(forKey: "WrongHost")
+        if hostcheck == true {
+            let alert = NSAlert()
+            alert.messageText = NSLocalizedString("Uh Oh! An error has occured.", comment: "")
+            alert.informativeText = NSLocalizedString("The hostname could not be resolved. Please make sure that you input the correct address.", comment: "")
+            alert.alertStyle = .warning
+            alert.icon = NSImage(named: "AppLogo")
+            let Button = NSLocalizedString("I understand", comment: "")
+            alert.addButton(withTitle: Button)
+            alert.runModal()
+            return
+        }
+        
+    }
     
     func syncShellExec(path: String, args: [String] = []) {
         let process            = Process()

@@ -198,10 +198,39 @@ function strato()
 }
 
 ### Tools Section ###
+function check_input()
+{
+    hostname=$( _helpDefaultRead "HostnameTools" )
+    check=$( dig +noall +answer "$hostname" )
+    if [[ "$check" == "" ]]; then
+        _helpDefaultWriteBool YES "WrongHost"
+    else
+        _helpDefaultWriteBool NO "WrongHost"
+    fi
+}
+
 function show_ip()
 {
-    hostname=$( _helpDefaultRead "ShowIP" )
+    hostname=$( _helpDefaultRead "HostnameTools" )
     dig +short "$hostname"
+}
+
+function ping_host()
+{
+    hostname=$( _helpDefaultRead "HostnameTools" )
+    ping -c 3 "$hostname"
+}
+
+function dig_host()
+{
+    hostname=$( _helpDefaultRead "HostnameTools" )
+    dig "$hostname"
+}
+
+function whois_host()
+{
+    hostname=$( _helpDefaultRead "HostnameTools" )
+    whois "$hostname"
 }
 
 $1

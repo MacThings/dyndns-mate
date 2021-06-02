@@ -13,6 +13,9 @@
 /* Class = "NSMenuItem"; title = "Redo"; ObjectID = "6dh-zS-Vam"; */
 "6dh-zS-Vam.title" = "Redo";
 
+/* Class = "NSButtonCell"; title = "Show IP"; ObjectID = "6H5-M0-BcO"; */
+"6H5-M0-BcO.title" = "Zeige IP";
+
 /* Class = "NSMenuItem"; title = "Strato"; ObjectID = "6u7-Ua-j8J"; */
 "6u7-Ua-j8J.title" = "Strato";
 
@@ -103,6 +106,9 @@
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
 "OY7-WF-poV.title" = "Minimize";
 
+/* Class = "NSViewController"; title = "Tools"; ObjectID = "Qt3-Qu-mog"; */
+"Qt3-Qu-mog.title" = "Werkzeuge";
+
 /* Class = "NSButtonCell"; title = "Install daemon"; ObjectID = "qvG-s7-T5k"; */
 "qvG-s7-T5k.title" = "Installiere Daemon";
 
@@ -153,9 +159,6 @@
 
 /* Class = "NSMenuItem"; title = "FreeDNS"; ObjectID = "yOc-BE-SNx"; */
 "yOc-BE-SNx.title" = "FreeDNS";
-
-/* Class = "NSMenuItem"; title = "Dyn"; ObjectID = "Yv5-9q-gYF"; */
-"Yv5-9q-gYF.title" = "DynDns";
 
 /* Class = "NSButtonCell"; title = "Create account"; ObjectID = "Zma-Rc-x6z"; */
 "Zma-Rc-x6z.title" = "Account erstellen";
