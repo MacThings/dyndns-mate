@@ -106,8 +106,8 @@
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
 "OY7-WF-poV.title" = "Minimize";
 
-/* Class = "NSViewController"; title = "Tools"; ObjectID = "Qt3-Qu-mog"; */
-"Qt3-Qu-mog.title" = "Werkzeuge";
+/* Class = "NSViewController"; title = "Tools"; ObjectID = "yHs-Sg-ndl"; */
+"yHs-Sg-ndl.title" = "Werkzeuge";
 
 /* Class = "NSButtonCell"; title = "Install daemon"; ObjectID = "qvG-s7-T5k"; */
 "qvG-s7-T5k.title" = "Installiere Daemon";
