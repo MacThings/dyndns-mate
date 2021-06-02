@@ -1,4 +1,13 @@
 /* No comment provided by engineer. */
+"Account" = "Konto";
+
+/* No comment provided by engineer. */
+"Any hostname from your account" = "Irgend Hostname aus dem Konto";
+
+/* No comment provided by engineer. */
+"Dynamic DNS key of hostname" = "Dynamic DNS Schlüssel vom Hostnamen";
+
+/* No comment provided by engineer. */
 "I understand" = "Ok verstanden";
 
 /* No comment provided by engineer. */
@@ -6,6 +15,15 @@
 
 /* No comment provided by engineer. */
 "is:" = "lautet:";
+
+/* No comment provided by engineer. */
+"Master password" = "Hauptpasswort";
+
+/* No comment provided by engineer. */
+"Not available" = "Nicht verfügbar";
+
+/* No comment provided by engineer. */
+"Password" = "Passwort";
 
 /* No comment provided by engineer. */
 "The hostname could not be resolved. Please make sure that you input the correct address." = "Der Hostname konnte nicht aufgelöst werden. Bitte stelle sicher, dass Du den korrekten Namen eingegeben hast.";
@@ -21,4 +39,7 @@
 
 /* No comment provided by engineer. */
 "Uninstall daemon" = "Daemon entfernen";
+
+/* No comment provided by engineer. */
+"Username" = "Benutzername";
 

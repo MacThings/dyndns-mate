@@ -85,7 +85,7 @@
 /* Class = "NSMenuItem"; title = "EasyDNS"; ObjectID = "leq-Sn-SYi"; */
 "leq-Sn-SYi.title" = "EasyDNS";
 
-/* Class = "NSTextFieldCell"; title = "Username / E-Mail address"; ObjectID = "LHE-VL-ECe"; */
+/* Class = "NSTextFieldCell"; title = "Login"; ObjectID = "LHE-VL-ECe"; */
 "LHE-VL-ECe.title" = "Benutzername / E-Mail Addresse";
 
 /* Class = "NSViewController"; title = "About"; ObjectID = "m0Z-GC-FNR"; */
@@ -105,9 +105,6 @@
 
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "OY7-WF-poV"; */
 "OY7-WF-poV.title" = "Minimize";
-
-/* Class = "NSViewController"; title = "Tools"; ObjectID = "yHs-Sg-ndl"; */
-"yHs-Sg-ndl.title" = "Werkzeuge";
 
 /* Class = "NSButtonCell"; title = "Install daemon"; ObjectID = "qvG-s7-T5k"; */
 "qvG-s7-T5k.title" = "Installiere Daemon";
@@ -145,7 +142,7 @@
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Hilfe";
 
-/* Class = "NSTextFieldCell"; title = "Password / Key"; ObjectID = "wud-V6-MO7"; */
+/* Class = "NSTextFieldCell"; title = "Password"; ObjectID = "wud-V6-MO7"; */
 "wud-V6-MO7.title" = "Passwort / Schlüssel";
 
 /* Class = "NSMenuItem"; title = "Copy"; ObjectID = "x3v-GG-iWU"; */
@@ -156,6 +153,9 @@
 
 /* Class = "NSTextFieldCell"; title = "Hostname"; ObjectID = "yc3-kJ-rRP"; */
 "yc3-kJ-rRP.title" = "Hostname";
+
+/* Class = "NSButtonCell"; title = "Tools"; ObjectID = "yHs-Sg-ndl"; */
+"yHs-Sg-ndl.title" = "Werkzeuge";
 
 /* Class = "NSMenuItem"; title = "FreeDNS"; ObjectID = "yOc-BE-SNx"; */
 "yOc-BE-SNx.title" = "FreeDNS";
