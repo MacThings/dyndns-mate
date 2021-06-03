@@ -32,6 +32,18 @@ class LetsMove: NSViewController {
         let CancelButtonText = NSLocalizedString("Move to Applicationsfolder", comment: "")
         alert.addButton(withTitle: CancelButtonText)
         
+        let admin_check_sh = "user=$( id -un ); admin_check=$( groups \"$user\" | grep -w -q admin ); echo \"$admin_check\""
+        if admin_check_sh.contains(" admin ") {
+            UserDefaults.standard.set(true, forKey: "Admin")
+        } else {
+            UserDefaults.standard.set(false, forKey: "Admin")
+        }
+        let process            = Process()
+        process.launchPath     = "/bin/bash"
+        process.arguments      = ["-c", admin_check_sh]
+        process.launch()
+        process.waitUntilExit()
+        
         if alert.runModal() == .alertFirstButtonReturn {
             if let supress = alert.suppressionButton {
                 let state = supress.state
@@ -44,7 +56,6 @@ class LetsMove: NSViewController {
             return
         }
 
-        syncShellExec(path: scriptPath, args: ["admin_check"])
         let admin_check = UserDefaults.standard.bool(forKey: "Admin")
         let appName = Bundle.main.infoDictionary!["CFBundleName"] as! String
         let fileManager = FileManager.default

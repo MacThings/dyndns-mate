@@ -6,6 +6,8 @@
 //
 
 import Cocoa
+import CoreFoundation
+import AVFoundation
 
 class ViewController: NSViewController {
     
@@ -195,6 +197,10 @@ class ViewController: NSViewController {
 
     
     @IBAction func move_to_apps(_ sender: Any) {
+        let launchpath = UserDefaults.standard.string(forKey: "Launchpath")!
+        let appname = UserDefaults.standard.string(forKey: "AppName")
+
+
         LetsMove().LetsMove()
     }
 
@@ -430,5 +436,6 @@ class ViewController: NSViewController {
                 return
         }
     }
+    
 }
 

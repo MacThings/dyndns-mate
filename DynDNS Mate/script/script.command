@@ -257,17 +257,6 @@ function whois_host()
     whois "$hostname"
 }
 
-function admin_check()
-{
-    user=$( id -un )
-    admin_check=$( groups "$user" | grep -q -w admin )
-        if [[ "admin_check" != "" ]]; then
-            _helpDefaultWriteBool YES "Admin"
-        else
-            _helpDefaultWriteBool NO "Admin"
-        fi
-}
-
 function move_to_apps()
 {
     launchpath=$( _helpDefaultRead "Launchpath" | sed 's/.$//' )
