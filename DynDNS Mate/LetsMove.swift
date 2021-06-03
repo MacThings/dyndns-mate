@@ -13,7 +13,7 @@ class LetsMove: NSViewController {
     
     func LetsMove() {
         let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
-        let orig_path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
+        var orig_path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
         if orig_path.contains("/Applications/") {
             UserDefaults.standard.set(true, forKey: "Supress")
             return
@@ -32,15 +32,10 @@ class LetsMove: NSViewController {
         let CancelButtonText = NSLocalizedString("Move to Applicationsfolder", comment: "")
         alert.addButton(withTitle: CancelButtonText)
         
-        let admin_check_sh = "user=$( id -un ); admin_check=$( groups \"$user\" | grep -w -q admin ); echo \"$admin_check\""
-        if admin_check_sh.contains(" admin ") {
-            UserDefaults.standard.set(true, forKey: "Admin")
-        } else {
-            UserDefaults.standard.set(false, forKey: "Admin")
-        }
+        let admin_check = "user=$( id -un ); admin_check=$( groups \"$user\" | grep -w -q admin ); echo \"$admin_check\""
         let process            = Process()
         process.launchPath     = "/bin/bash"
-        process.arguments      = ["-c", admin_check_sh]
+        process.arguments      = ["-c", admin_check]
         process.launch()
         process.waitUntilExit()
         
@@ -56,11 +51,11 @@ class LetsMove: NSViewController {
             return
         }
 
-        let admin_check = UserDefaults.standard.bool(forKey: "Admin")
         let appName = Bundle.main.infoDictionary!["CFBundleName"] as! String
+        orig_path.removeLast()
         let fileManager = FileManager.default
         let path = "/Applications/" + appName + ".app"
-            if admin_check == false {
+            if admin_check.contains(" atmin ") {
                 do {
                     if fileManager.fileExists(atPath: path) {
                         try fileManager.removeItem(atPath: path)
@@ -73,21 +68,23 @@ class LetsMove: NSViewController {
                 } catch {
                     print("Error")
                 }
-            }
-            if admin_check == true {
-                UserDefaults.standard.set(orig_path, forKey: "Launchpath")
-                UserDefaults.standard.set(appName, forKey: "AppName")
-                syncShellExec(path: scriptPath, args: ["move_to_apps"])
+            } else {
+                let move_to_apps = "osascript -e 'do shell script \"rm -rf /Applications/" + appName + ".app; cp -r \\\"" + orig_path + "\\\" /Applications/\"; chown -R " + NSUserName() + ":staff /Applications/" + appName + ".app; rm -r \\\"" + orig_path + "\\\"\" with administrator privileges'"
+                
+                print(move_to_apps)
+                return
+                
+                let process            = Process()
+                process.launchPath     = "/bin/bash"
+                process.arguments      = ["-c", move_to_apps]
+                process.launch()
+                process.waitUntilExit()
             }
         let task = Process()
         task.launchPath = "/usr/bin/open"
         task.arguments = [path]
         task.launch()
-
-        //UserDefaults.standard.removeObject(forKey: "Admin")
-        //UserDefaults.standard.removeObject(forKey: "Launchpath")
-        //UserDefaults.standard.removeObject(forKey: "AppName")
-            
+           
         exit(0)
 }
         
