@@ -42,7 +42,6 @@ class ViewController: NSViewController {
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
         
         check_status_init()
-
               
         let company_init = UserDefaults.standard.string(forKey: "Company")
         if company_init == nil{
@@ -185,7 +184,7 @@ class ViewController: NSViewController {
             self.optional.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         }
-       
+  
     }
 
     override var representedObject: Any? {
@@ -196,65 +195,7 @@ class ViewController: NSViewController {
 
     
     @IBAction func move_to_apps(_ sender: Any) {
-        if UserDefaults.standard.bool(forKey: "Supress") {
-            return
-        }
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString("Hey, Yo!", comment: "")
-            alert.informativeText = NSLocalizedString("You ain't doin' that", comment: "")
-            alert.alertStyle = .critical
-            alert.showsSuppressionButton = true
-            alert.addButton(withTitle: NSLocalizedString("Allright already", comment: ""))
-            alert.runModal()
-            
-            if let supress = alert.suppressionButton {
-                let state = supress.state
-                switch state {
-                case NSControl.StateValue.on:
-                    UserDefaults.standard.set(true, forKey: "Supress")
-                default: break
-                    }
-                }
-
-        return
-
-        syncShellExec(path: scriptPath, args: ["admin_check"])
-        let admin_check = UserDefaults.standard.bool(forKey: "Admin")
-        let appName = Bundle.main.infoDictionary!["CFBundleName"] as! String
-        let fileManager = FileManager.default
-        let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
-        let orig_path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
-        let path = "/Applications/" + appName + ".app"
-            if orig_path.contains("/Applications/") {
-                return
-            } else {
-                
-                if admin_check == true {
-                    do {
-                        if fileManager.fileExists(atPath: path) {
-                            try fileManager.removeItem(atPath: path)
-                            try fileManager.copyItem(atPath: orig_path, toPath: path)
-                            try fileManager.removeItem(atPath: orig_path)
-                        } else {
-                            try fileManager.copyItem(atPath: orig_path, toPath: path)
-                            try fileManager.removeItem(atPath: orig_path)
-                        }
-                    } catch {
-                        print("Error")
-                    }
-                }
-                if admin_check == false {
-                    UserDefaults.standard.set(orig_path, forKey: "Launchpath")
-                    UserDefaults.standard.set(appName, forKey: "AppName")
-                    self.syncShellExec(path: scriptPath, args: ["move_to_apps"])
-                }
-            
-                let task = Process()
-            task.launchPath = "/usr/bin/open"
-            task.arguments = [path]
-            task.launch()
-            exit(0)
-        }
+        LetsMove().LetsMove()
     }
 
     @IBAction func select_company(_ sender: Any) {

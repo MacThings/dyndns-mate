@@ -19,6 +19,7 @@
 		2A5036722662F25100C39BE8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5036702662F25100C39BE8 /* Localizable.strings */; };
 		2A77A9FF2663AD7700DF0EE6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A77A9FD2663AD7700DF0EE6 /* InfoPlist.strings */; };
 		2AAE30FC2664FB6A0054634E /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2AAE30FB2664FB6A0054634E /* Sparkle */; };
+		2AC5069B266958C20082FA70 /* LetsMove.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC5069A266958C20082FA70 /* LetsMove.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,7 @@
 		2A50366E2662F11400C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2A5036712662F25100C39BE8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A77A9FE2663AD7700DF0EE6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2AC5069A266958C20082FA70 /* LetsMove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetsMove.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				2A4019D02662349300D51495 /* script */,
 				2A4019BD2662305600D51495 /* AppDelegate.swift */,
 				2A5036672662E94000C39BE8 /* About.swift */,
+				2AC5069A266958C20082FA70 /* LetsMove.swift */,
 				2A4019BF2662305600D51495 /* MainWindow.swift */,
 				2A0D8ADC26666DAE0080B72A /* Tools.swift */,
 				2A4019C12662305600D51495 /* Assets.xcassets */,
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4019C02662305600D51495 /* MainWindow.swift in Sources */,
+				2AC5069B266958C20082FA70 /* LetsMove.swift in Sources */,
 				2A5036682662E94000C39BE8 /* About.swift in Sources */,
 				2A4019BE2662305600D51495 /* AppDelegate.swift in Sources */,
 				2A0D8ADD26666DAE0080B72A /* Tools.swift in Sources */,
