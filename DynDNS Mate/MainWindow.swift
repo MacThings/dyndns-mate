@@ -29,6 +29,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var password: NSSecureTextField!
     @IBOutlet weak var password_lable: NSTextField!
 
+    @IBOutlet weak var optional: NSTextField!
+    @IBOutlet weak var optional_lable: NSTextField!
+    
+    
     @IBOutlet weak var daemon_button: NSButton!
     
     
@@ -52,15 +56,18 @@ class ViewController: NSViewController {
         if hostname_init == nil{
             UserDefaults.standard.set("", forKey: "Hostname")
         }
-        let login_init = UserDefaults.standard.string(forKey: "Username")
+        let login_init = UserDefaults.standard.string(forKey: "Login")
         if login_init == nil{
-            UserDefaults.standard.set("", forKey: "Username")
+            UserDefaults.standard.set("", forKey: "Login")
         }
         let password_init = UserDefaults.standard.string(forKey: "Password")
         if password_init == nil{
             UserDefaults.standard.set("", forKey: "Password")
         }
-        
+        let optional_init = UserDefaults.standard.string(forKey: "Optional")
+        if optional_init == nil{
+            UserDefaults.standard.set("", forKey: "Optional")
+        }
         let interval_init = UserDefaults.standard.string(forKey: "Interval")
         if interval_init == nil{
             UserDefaults.standard.set("60", forKey: "Interval")
@@ -73,48 +80,109 @@ class ViewController: NSViewController {
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-        } else if getcompany == "DuckDNS"{
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
+        } else if getcompany == "CloudFlare"{
+            self.company_logo.image=NSImage(named: "cloudflare_logo")
+            self.login.isEnabled = true
+            self.login_lable.stringValue = NSLocalizedString("E-mail address", comment: "")
+            self.password.isEnabled = true
+            self.password_lable.stringValue = NSLocalizedString("API key (token)", comment: "")
+            self.optional.isEnabled = true
+            self.optional_lable.stringValue = NSLocalizedString("Root domain (of the hostname)", comment: "")
+            let optional = UserDefaults.standard.string(forKey: "Optional")
+            if optional == nil{
+                UserDefaults.standard.set("", forKey: "Optional")
+            } else {
+                self.optional.stringValue = optional!
+            }
+        } else if getcompany == "DNSMadeEasy"{
+            self.company_logo.image=NSImage(named: "dnsmadeeasy_logo")
+            self.login.isEnabled = true
+            self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
+            self.password.isEnabled = true
+            self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = true
+            self.optional_lable.stringValue = NSLocalizedString("Dynamic DNS ID", comment: "")
+            let optional = UserDefaults.standard.string(forKey: "Optional")
+            if optional == nil{
+                UserDefaults.standard.set("", forKey: "Optional")
+            } else {
+                self.optional.stringValue = optional!
+            }
+        }else if getcompany == "DuckDNS"{
             self.company_logo.image=NSImage(named: "duckdns_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Account", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = "Token"
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Dyn"{
             self.company_logo.image=NSImage(named: "dyn_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "EasyDNS"{
             self.company_logo.image=NSImage(named: "easydns_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "FreeDNS"{
             self.company_logo.image=NSImage(named: "freedns_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
+        } else if getcompany == "Google" {
+            self.company_logo.image=NSImage(named: "google_logo")
+            self.login.isEnabled = true
+            self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
+            self.password.isEnabled = true
+            self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Hurricane Electric"{
             self.company_logo.image=NSImage(named: "hurricane_logo")
             self.login.isEnabled = false
             self.login.stringValue = NSLocalizedString("Not available", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Dynamic DNS key of hostname", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "NoIp"{
             self.company_logo.image=NSImage(named: "noip_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Strato"{
             self.company_logo.image=NSImage(named: "strato_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Any hostname from your account", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Master password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         }
        
     }
@@ -127,7 +195,7 @@ class ViewController: NSViewController {
 
     
     @IBAction func select_company(_ sender: Any) {
-        let login_content = UserDefaults.standard.string(forKey: "Username")
+        let login_content = UserDefaults.standard.string(forKey: "Login")
         self.login.stringValue = login_content!
         
         let getcompany = (sender as AnyObject).selectedCell()!.title
@@ -137,48 +205,109 @@ class ViewController: NSViewController {
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
+        } else if getcompany == "CloudFlare"{
+            self.company_logo.image=NSImage(named: "cloudflare_logo")
+            self.login.isEnabled = true
+            self.login_lable.stringValue = NSLocalizedString("E-mail address", comment: "")
+            self.password.isEnabled = true
+            self.password_lable.stringValue = NSLocalizedString("API key (token)", comment: "")
+            self.optional.isEnabled = true
+            self.optional_lable.stringValue = NSLocalizedString("Root domain (of the hostname)", comment: "")
+            let optional = UserDefaults.standard.string(forKey: "Optional")
+            if optional == nil{
+                UserDefaults.standard.set("", forKey: "Optional")
+            } else {
+                self.optional.stringValue = optional!
+            }
+        } else if getcompany == "DNSMadeEasy"{
+            self.company_logo.image=NSImage(named: "dnsmadeeasy_logo")
+            self.login.isEnabled = true
+            self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
+            self.password.isEnabled = true
+            self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = true
+            self.optional_lable.stringValue = NSLocalizedString("Dynamic DNS ID", comment: "")
+            let optional = UserDefaults.standard.string(forKey: "Optional")
+            if optional == nil{
+                UserDefaults.standard.set("", forKey: "Optional")
+            } else {
+                self.optional.stringValue = optional!
+            }
         } else if getcompany == "DuckDNS"{
             self.company_logo.image=NSImage(named: "duckdns_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Account", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = "Token"
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Dyn"{
             self.company_logo.image=NSImage(named: "dyn_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "EasyDNS"{
             self.company_logo.image=NSImage(named: "easydns_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "FreeDNS"{
             self.company_logo.image=NSImage(named: "freedns_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
+        } else if getcompany == "Google" {
+            self.company_logo.image=NSImage(named: "google_logo")
+            self.login.isEnabled = true
+            self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
+            self.password.isEnabled = true
+            self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Hurricane Electric"{
             self.company_logo.image=NSImage(named: "hurricane_logo")
             self.login.isEnabled = false
             self.login.stringValue = NSLocalizedString("Not available", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Dynamic DNS key of hostname", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "NoIp"{
             self.company_logo.image=NSImage(named: "noip_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Strato"{
             self.company_logo.image=NSImage(named: "strato_logo")
             self.login.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Any hostname from your account", comment: "")
             self.password.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Master password", comment: "")
+            self.optional.isEnabled = false
+            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         }
     }
     
@@ -186,6 +315,8 @@ class ViewController: NSViewController {
         let company = UserDefaults.standard.string(forKey: "Company")
         if company == "ChangeIP" {
             NSWorkspace.shared.open(URL(string: "https://www.changeip.com")!)
+        } else if company == "DNSMadeEasy" {
+            NSWorkspace.shared.open(URL(string: "https://dnsmadeeasy.com")!)
         } else if company == "DuckDNS" {
             NSWorkspace.shared.open(URL(string: "https://www.duckdns.org")!)
         } else if company == "Dyn" {
@@ -194,6 +325,8 @@ class ViewController: NSViewController {
             NSWorkspace.shared.open(URL(string: "https://easydns.com/dns")!)
         } else if company == "FreeDNS" {
             NSWorkspace.shared.open(URL(string: "https://freedns.afraid.org")!)
+        } else if company == "Google" {
+            NSWorkspace.shared.open(URL(string: "https://domains.google")!)
         } else if company == "Hurricane Electric" {
             NSWorkspace.shared.open(URL(string: "https://dns.he.net")!)
         } else if company == "NoIp" {
@@ -207,6 +340,8 @@ class ViewController: NSViewController {
         let company = UserDefaults.standard.string(forKey: "Company")
         if company == "ChangeIP" {
             syncShellExec(path: scriptPath, args: ["changeip"])
+        } else if company == "DNSMadeEasy" {
+            syncShellExec(path: scriptPath, args: ["dnsmadeeasy"])
         } else if company == "DuckDNS" {
             syncShellExec(path: scriptPath, args: ["duckdns"])
         } else if company == "Dyn" {
@@ -215,6 +350,8 @@ class ViewController: NSViewController {
             syncShellExec(path: scriptPath, args: ["easydns"])
         } else if company == "FreeDNS" {
             syncShellExec(path: scriptPath, args: ["freedns"])
+        } else if company == "Google" {
+            syncShellExec(path: scriptPath, args: ["google"])
         } else if company == "Hurricane Electric" {
             syncShellExec(path: scriptPath, args: ["hurricane"])
         } else if company == "NoIp" {

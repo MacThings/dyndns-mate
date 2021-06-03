@@ -2,7 +2,7 @@
 "Account" = "Konto";
 
 /* No comment provided by engineer. */
-"Any hostname from your account" = "Irgend Hostname aus dem Konto";
+"Any hostname from your account" = "Beliebiger Hostname aus dem Konto";
 
 /* No comment provided by engineer. */
 "Dynamic DNS key of hostname" = "Dynamic DNS Schlüssel vom Hostnamen";

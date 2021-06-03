@@ -122,6 +122,18 @@ function changeip()
     set_plist
 }
 
+function dnsmadeeasy()
+{
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
+    password=$( _helpDefaultRead "Password" )
+    optional=$( _helpDefaultRead "Optional" )
+    
+    update=$( curl https://cp.dnsmadeeasy.com/servlet/updateip?username=$username@$hostname&password=$password&id=$optional&ip=$real_ip )
+    scheme=$( echo "curl https://cp.dnsmadeeasy.com/servlet/updateip?username=$username@$hostname&password=$password&id=$optional&ip=$real_ip" )
+}
+
+
 function duckdns()
 {
     hostname=$( _helpDefaultRead "Hostname" )
@@ -161,6 +173,17 @@ function freedns()
     password=$( _helpDefaultRead "Password" )
     update=$( curl https://$username:$password@freedns.afraid.org/nic/update?hostname=$hostname&myip=$real_ip )
     scheme=$( echo "https://$username:$password@freedns.afraid.org/nic/update?hostname=$hostname&myip=$real_ip" )
+    
+    set_plist
+}
+
+function google()
+{
+    hostname=$( _helpDefaultRead "Hostname" )
+    username=$( _helpDefaultRead "Login" )
+    password=$( _helpDefaultRead "Password" )
+    update=$( curl https://$username:$password@domains.google.com/nic/update?hostname=$hostname )
+    scheme=$( echo "curl https://$username:$password@domains.google.com/nic/update?hostname=$hostname" )
     
     set_plist
 }
