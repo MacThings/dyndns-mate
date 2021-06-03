@@ -8,6 +8,7 @@ cd "$MY_PATH"
 if [ ! -d "$ScriptTmpPath" ]; then
     mkdir "$ScriptTmpPath"
 fi
+AppName="DynDNS Mate.app"
 
 ################################################################
 ####################### Helper Function ########################
@@ -254,6 +255,26 @@ function whois_host()
 {
     hostname=$( _helpDefaultRead "HostnameTools" )
     whois "$hostname"
+}
+
+function admin_check()
+{
+    user=$( id -un )
+    admin_check=$( groups "$user" | grep -q -w admin )
+        if [[ "admin_check" != "" ]]; then
+            _helpDefaultWriteBool YES "Admin"
+        else
+            _helpDefaultWriteBool NO "Admin"
+        fi
+}
+
+function move_to_apps()
+{
+    launchpath=$( _helpDefaultRead "Launchpath" | sed 's/.$//' )
+    appname=$( _helpDefaultRead "AppName" )
+    user=$( id -un )
+    
+    osascript -e 'do shell script "rm -rf /Applications/'"$appname"'.app && cp -r '"'$launchpath'"' /Applications/ && chown -R '"'$user'"':staff /Applications/'"'$appname'"'.app && rm -r '"'$launchpath'"'" with administrator privileges'
 }
 
 $1

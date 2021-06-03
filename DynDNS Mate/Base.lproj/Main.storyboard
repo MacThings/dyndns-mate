@@ -455,6 +455,17 @@
                                     <binding destination="GfX-ci-9w0" name="value" keyPath="values.Interval" id="3JG-W2-LBR"/>
                                 </connections>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3WT-JT-xdC">
+                                <rect key="frame" x="319" y="7" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6CP-PS-Q8x">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="move_to_apps:" target="XfG-lQ-9wD" id="l17-ng-lqq"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>

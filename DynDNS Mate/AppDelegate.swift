@@ -22,6 +22,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         UserDefaults.standard.removeObject(forKey: "HostnameTools")
+        UserDefaults.standard.removeObject(forKey: "Admin")
+        UserDefaults.standard.removeObject(forKey: "Launchpath")
+        UserDefaults.standard.removeObject(forKey: "AppName")
         // Insert code here to tear down your application
     }
 

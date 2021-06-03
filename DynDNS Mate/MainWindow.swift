@@ -10,7 +10,7 @@ import Cocoa
 class ViewController: NSViewController {
     
     let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
-    
+
     @IBOutlet weak var daemon_dot: NSImageView!
     @IBOutlet weak var status_dot: NSImageView!
         
@@ -38,6 +38,7 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
         
         check_status_init()
@@ -194,6 +195,46 @@ class ViewController: NSViewController {
     }
 
     
+    @IBAction func move_to_apps(_ sender: Any) {
+        syncShellExec(path: scriptPath, args: ["admin_check"])
+        let admin_check = UserDefaults.standard.bool(forKey: "Admin")
+        let appName = Bundle.main.infoDictionary!["CFBundleName"] as! String
+        let fileManager = FileManager.default
+        let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
+        let orig_path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
+        let path = "/Applications/" + appName + ".app"
+            if orig_path.contains("/Applications/") {
+                return
+            } else {
+                
+                if admin_check == true {
+                    do {
+                        if fileManager.fileExists(atPath: path) {
+                            try fileManager.removeItem(atPath: path)
+                            try fileManager.copyItem(atPath: orig_path, toPath: path)
+                            try fileManager.removeItem(atPath: orig_path)
+                        } else {
+                            try fileManager.copyItem(atPath: orig_path, toPath: path)
+                            try fileManager.removeItem(atPath: orig_path)
+                        }
+                    } catch {
+                        print("Error")
+                    }
+                }
+                if admin_check == false {
+                    UserDefaults.standard.set(orig_path, forKey: "Launchpath")
+                    UserDefaults.standard.set(appName, forKey: "AppName")
+                    self.syncShellExec(path: scriptPath, args: ["move_to_apps"])
+                }
+            
+                let task = Process()
+            task.launchPath = "/usr/bin/open"
+            task.arguments = [path]
+            task.launch()
+            exit(0)
+        }
+    }
+
     @IBAction func select_company(_ sender: Any) {
         let login_content = UserDefaults.standard.string(forKey: "Login")
         self.login.stringValue = login_content!
