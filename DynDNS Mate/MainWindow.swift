@@ -196,6 +196,28 @@ class ViewController: NSViewController {
 
     
     @IBAction func move_to_apps(_ sender: Any) {
+        if UserDefaults.standard.bool(forKey: "Supress") {
+            return
+        }
+        let alert = NSAlert()
+        alert.messageText = NSLocalizedString("Hey, Yo!", comment: "")
+            alert.informativeText = NSLocalizedString("You ain't doin' that", comment: "")
+            alert.alertStyle = .critical
+            alert.showsSuppressionButton = true
+            alert.addButton(withTitle: NSLocalizedString("Allright already", comment: ""))
+            alert.runModal()
+            
+            if let supress = alert.suppressionButton {
+                let state = supress.state
+                switch state {
+                case NSControl.StateValue.on:
+                    UserDefaults.standard.set(true, forKey: "Supress")
+                default: break
+                    }
+                }
+
+        return
+
         syncShellExec(path: scriptPath, args: ["admin_check"])
         let admin_check = UserDefaults.standard.bool(forKey: "Admin")
         let appName = Bundle.main.infoDictionary!["CFBundleName"] as! String
