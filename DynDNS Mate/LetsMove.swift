@@ -69,11 +69,7 @@ class LetsMove: NSViewController {
                     print("Error")
                 }
             } else {
-                let move_to_apps = "osascript -e 'do shell script \"rm -rf /Applications/" + appName + ".app; cp -r \\\"" + orig_path + "\\\" /Applications/\"; chown -R " + NSUserName() + ":staff /Applications/" + appName + ".app; rm -r \\\"" + orig_path + "\\\"\" with administrator privileges'"
-                
-                print(move_to_apps)
-                return
-                
+                let move_to_apps = "osascript -e 'do shell script \"rm -rf /Applications/" + appName + ".app; cp -r \\\"" + orig_path + "\\\" /Applications/; chown -R " + NSUserName() + ":staff \\\"/Applications/" + appName + ".app\\\"; rm -r \\\"" + orig_path + "\\\"\" with administrator privileges'"
                 let process            = Process()
                 process.launchPath     = "/bin/bash"
                 process.arguments      = ["-c", move_to_apps]
