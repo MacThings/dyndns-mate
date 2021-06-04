@@ -27,7 +27,7 @@ class LetsMove: NSViewController {
         let alert = NSAlert()
         alert.messageText = NSLocalizedString("Move to Applications folder?", comment: "")
         alert.informativeText = NSLocalizedString("I can move myself to the Applications folder if you'd like. This will keep your Downloads folder uncluttered.", comment: "")
-        alert.alertStyle = .critical
+        alert.alertStyle = .informational
         alert.showsSuppressionButton = true
         let Button = NSLocalizedString("Do Not Move", comment: "")
         alert.addButton(withTitle: Button)
