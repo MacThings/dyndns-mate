@@ -59,12 +59,9 @@ class LetsMove: NSViewController {
                 do {
                     if fileManager.fileExists(atPath: path) {
                         try fileManager.removeItem(atPath: path)
-                        try fileManager.copyItem(atPath: LaunchPath, toPath: path)
-                        try fileManager.removeItem(atPath: LaunchPath)
-                    } else {
-                        try fileManager.copyItem(atPath: LaunchPath, toPath: path)
-                        try fileManager.removeItem(atPath: LaunchPath)
                     }
+                    try fileManager.copyItem(atPath: LaunchPath, toPath: path)
+                    try fileManager.removeItem(atPath: LaunchPath)
                 } catch {
                     print("Error")
                 }
