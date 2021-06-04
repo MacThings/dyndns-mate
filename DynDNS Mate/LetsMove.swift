@@ -1,27 +1,29 @@
 //
-//  AppDelegate.swift
-//  DynDNS Manager
+//  LetsMove.swift
+//  Sample
 //
-//  Created by Prof. Dr. Luigi on 29.05.21.
+//  Created by Sascha Lamprecht 04.06.2021
 //
 
 import Cocoa
 
 class LetsMove: NSViewController {
-
-    let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
     
-    func LetsMove() {
+    func ToApps() {
+
         let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
-        var orig_path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
-        if orig_path.contains("/Applications/") {
-            UserDefaults.standard.set(true, forKey: "Supress")
+        var LaunchPath = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
+        LaunchPath.removeLast()
+        let BundleAppName = Bundle.main.infoDictionary!["CFBundleName"] as! String
+        let RealAppName = String(LaunchPath.suffix(from: (LaunchPath.range(of: BundleAppName)?.lowerBound)!))
+        
+        if LaunchPath.contains("/Applications/") {
             return
         }
         if UserDefaults.standard.bool(forKey: "Supress") {
             return
         }
-
+        
         let alert = NSAlert()
         alert.messageText = NSLocalizedString("Move to Applications folder?", comment: "")
         alert.informativeText = NSLocalizedString("I can move myself to the Applications folder if you'd like. This will keep your Downloads folder uncluttered.", comment: "")
@@ -31,14 +33,7 @@ class LetsMove: NSViewController {
         alert.addButton(withTitle: Button)
         let CancelButtonText = NSLocalizedString("Move to Applicationsfolder", comment: "")
         alert.addButton(withTitle: CancelButtonText)
-        
-        let admin_check = "user=$( id -un ); admin_check=$( groups \"$user\" | grep -w -q admin ); echo \"$admin_check\""
-        let process            = Process()
-        process.launchPath     = "/bin/bash"
-        process.arguments      = ["-c", admin_check]
-        process.launch()
-        process.waitUntilExit()
-        
+
         if alert.runModal() == .alertFirstButtonReturn {
             if let supress = alert.suppressionButton {
                 let state = supress.state
@@ -51,25 +46,30 @@ class LetsMove: NSViewController {
             return
         }
 
-        let appName = Bundle.main.infoDictionary!["CFBundleName"] as! String
-        orig_path.removeLast()
+        let admin_check = "user=$( id -un ); admin_check=$( groups \"$user\" | grep -w -q admin ); echo \"$admin_check\""
+        let process            = Process()
+        process.launchPath     = "/bin/bash"
+        process.arguments      = ["-c", admin_check]
+        process.launch()
+        process.waitUntilExit()
+        
         let fileManager = FileManager.default
-        let path = "/Applications/" + appName + ".app"
-            if admin_check.contains(" atmin ") {
+        let path = "/Applications/" + RealAppName
+            if admin_check.contains(" admin ") {
                 do {
                     if fileManager.fileExists(atPath: path) {
                         try fileManager.removeItem(atPath: path)
-                        try fileManager.copyItem(atPath: orig_path, toPath: path)
-                        try fileManager.removeItem(atPath: orig_path)
+                        try fileManager.copyItem(atPath: LaunchPath, toPath: path)
+                        try fileManager.removeItem(atPath: LaunchPath)
                     } else {
-                        try fileManager.copyItem(atPath: orig_path, toPath: path)
-                        try fileManager.removeItem(atPath: orig_path)
+                        try fileManager.copyItem(atPath: LaunchPath, toPath: path)
+                        try fileManager.removeItem(atPath: LaunchPath)
                     }
                 } catch {
                     print("Error")
                 }
             } else {
-                let move_to_apps = "osascript -e 'do shell script \"rm -rf /Applications/" + appName + ".app; cp -r \\\"" + orig_path + "\\\" /Applications/; chown -R " + NSUserName() + ":staff \\\"/Applications/" + appName + ".app\\\"; rm -r \\\"" + orig_path + "\\\"\" with administrator privileges'"
+                let move_to_apps = "osascript -e 'do shell script \"rm -rf /Applications/" + RealAppName + "; cp -r \\\"" + LaunchPath + "\\\" /Applications/; chown -R " + NSUserName() + ":staff \\\"/Applications/" + RealAppName + "\\\"; rm -r \\\"" + LaunchPath + "\\\"\" with administrator privileges'"
                 let process            = Process()
                 process.launchPath     = "/bin/bash"
                 process.arguments      = ["-c", move_to_apps]
@@ -80,16 +80,6 @@ class LetsMove: NSViewController {
         task.launchPath = "/usr/bin/open"
         task.arguments = [path]
         task.launch()
-           
         exit(0)
-}
-        
-    func syncShellExec(path: String, args: [String] = []) {
-        let process            = Process()
-        process.launchPath     = "/bin/bash"
-        process.arguments      = [path] + args
-        process.launch()
-        process.waitUntilExit()
     }
 }
-

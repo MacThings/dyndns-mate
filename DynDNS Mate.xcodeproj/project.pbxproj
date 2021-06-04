@@ -227,7 +227,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -r /Applications/DynDNS\\ Mate.app\nrm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/bin/Sparkle.framework\nrm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/script/Sparkle.framework\ncp -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app /Applications/\nif [ -d /Volumes/Homeshare/Xcode/dyndnsmate ]; then\ncp \"/Users/luigi/Documents/Xcode/dyndnsmate/DynDNS Mate/dyndnsmate.html\" \"/Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.html\"\nrm /Volumes/Homeshare/Xcode/dyndns-mate/upload/dyndnsmate.zip 2> /dev/null\ncd /Applications\nditto -c -k --sequesterRsrc --keepParent DynDNS\\ Mate.app /Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.zip\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#rm -r /Applications/DynDNS\\ Mate.app\n#rm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/bin/Sparkle.framework\n#rm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/script/Sparkle.framework\n#cp -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app /Applications/\n#if [ -d /Volumes/Homeshare/Xcode/dyndnsmate ]; then\n#cp \"/Users/luigi/Documents/Xcode/dyndnsmate/DynDNS Mate/dyndnsmate.html\" \"/Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.html\"\n#rm /Volumes/Homeshare/Xcode/dyndns-mate/upload/dyndnsmate.zip 2> /dev/null\n#cd /Applications\n#ditto -c -k --sequesterRsrc --keepParent DynDNS\\ Mate.app /Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.zip\n#fi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

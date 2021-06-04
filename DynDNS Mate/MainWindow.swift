@@ -195,17 +195,6 @@ class ViewController: NSViewController {
         }
     }
 
-    
-    @IBAction func move_to_apps(_ sender: Any) {
-        //let launchpath = UserDefaults.standard.string(forKey: "Launchpath")!
-        //let appname = UserDefaults.standard.string(forKey: "AppName")
-
-        
-        
-
-        LetsMove().LetsMove()
-    }
-
     @IBAction func select_company(_ sender: Any) {
         let login_content = UserDefaults.standard.string(forKey: "Login")
         self.login.stringValue = login_content!
