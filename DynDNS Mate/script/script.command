@@ -71,20 +71,6 @@ function set_plist()
     fi
 }
 
-function check_status()
-{
-    real_ip=$( curl ipecho.net/plain )
-    hostname=$( _helpDefaultRead "Hostname" )
-    dyndns_ip=$( dig +short $hostname )
-    
-    if [[ "$real_ip" = "$dyndns_ip" ]]; then
-        _helpDefaultWriteBool YES "UpdateOK"
-    else
-        _helpDefaultWriteBool NO "UpdateOK"
-    fi
-
-}
-
 function check_daemon()
 {
     daemon_check=$( launchctl list |grep de.slsoft.dyndnsmate )
@@ -94,22 +80,6 @@ function check_daemon()
     else
         _helpDefaultWriteBool YES "Daemon"
     fi
-}
-
-function install_daemon()
-{
-    interval=$( _helpDefaultRead "Interval" )
-    interval=$(( $interval * 60 ))
-    cp de.slsoft.dyndnsmate.plist "$ScriptHome"/Library/LaunchAgents/.
-    chmod 644 "$ScriptHome"/Library/LaunchAgents/de.slsoft.dyndnsmate.plist
-    ../bin/PlistBuddy -c "Set :StartInterval $interval" "$ScriptHome"/Library/LaunchAgents/de.slsoft.dyndnsmate.plist
-    launchctl load -w "$ScriptHome"/Library/LaunchAgents/de.slsoft.dyndnsmate.plist
-}
-
-function uninstall_daemon()
-{
-    launchctl unload -w "$ScriptHome"/Library/LaunchAgents/de.slsoft.dyndnsmate.plist
-    rm "$ScriptHome"/Library/LaunchAgents/de.slsoft.dyndnsmate.plist
 }
 
 function changeip()
@@ -219,51 +189,6 @@ function strato()
     scheme=$( echo "curl --silent --show-error --insecure --user $username:$password https://dyndns.strato.com/nic/update?hostname=&hostname" )
     
     set_plist
-}
-
-### Tools Section ###
-function check_input()
-{
-    hostname=$( _helpDefaultRead "HostnameTools" )
-    check=$( dig +noall +answer "$hostname" )
-    if [[ "$check" == "" ]]; then
-        _helpDefaultWriteBool YES "WrongHost"
-    else
-        _helpDefaultWriteBool NO "WrongHost"
-    fi
-}
-
-function show_ip()
-{
-    hostname=$( _helpDefaultRead "HostnameTools" )
-    dig +short "$hostname"
-}
-
-function ping_host()
-{
-    hostname=$( _helpDefaultRead "HostnameTools" )
-    ping -c 3 "$hostname"
-}
-
-function dig_host()
-{
-    hostname=$( _helpDefaultRead "HostnameTools" )
-    dig "$hostname"
-}
-
-function whois_host()
-{
-    hostname=$( _helpDefaultRead "HostnameTools" )
-    whois "$hostname"
-}
-
-function move_to_apps()
-{
-    launchpath=$( _helpDefaultRead "Launchpath" | sed 's/.$//' )
-    appname=$( _helpDefaultRead "AppName" )
-    user=$( id -un )
-    
-    osascript -e 'do shell script "rm -rf /Applications/'"$appname"'.app && cp -r '"'$launchpath'"' /Applications/ && chown -R '"'$user'"':staff /Applications/'"'$appname'"'.app && rm -r '"'$launchpath'"'" with administrator privileges'
 }
 
 $1

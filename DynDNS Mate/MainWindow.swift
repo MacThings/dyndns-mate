@@ -13,6 +13,14 @@ class ViewController: NSViewController {
     
     let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
     var cmd_result = ""
+    
+    func userDesktop() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
+        let userDesktopDirectory = paths[0]
+        return userDesktopDirectory
+    }
+    
+    let userDesktopDirectory:String = NSHomeDirectory()
 
     @IBOutlet weak var daemon_dot: NSImageView!
     @IBOutlet weak var status_dot: NSImageView!
@@ -43,9 +51,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
-        
-        check_status_init()
-              
+   
         let company_init = UserDefaults.standard.string(forKey: "Company")
         if company_init == nil{
             let langStr = Locale.current.languageCode
@@ -75,6 +81,8 @@ class ViewController: NSViewController {
         if interval_init == nil{
             UserDefaults.standard.set("60", forKey: "Interval")
         }
+        
+        check_status_init()
         
         let getcompany = UserDefaults.standard.string(forKey: "Company")
         if getcompany == "ChangeIP" {
@@ -366,19 +374,22 @@ class ViewController: NSViewController {
     
     
     @IBAction func daemon(_ sender: Any) {
+        let userhome = self.userDesktopDirectory
         shell(cmd: "launchctl list |grep de.slsoft.dyndnsmate")
         if cmd_result != "" {
             self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
             self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
-            syncShellExec(path: scriptPath, args: ["uninstall_daemon"])
+            shell(cmd: "launchctl unload -w " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
+            shell(cmd: "rm " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
         } else {
+            let interval = String(Int(UserDefaults.standard.string(forKey: "Interval")!)!*60)
+            shell(cmd: "cp DynDNS*.app/Contents/Resources/script/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
+            shell(cmd: "chmod 644 " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
+            shell(cmd: "DynDNS*.app/Contents/Resources/bin/PlistBuddy -c \"Set :StartInterval " + interval + "\" " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
+            shell(cmd: "launchctl load -w " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
             self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
-            syncShellExec(path: scriptPath, args: ["install_daemon"])
         }
-        
-        //UserDefaults.standard.set(cmd_result, forKey: "Bla")
-        
         check_status_init()
     }
     
@@ -401,7 +412,7 @@ class ViewController: NSViewController {
         group.enter()
         filelHandler.readabilityHandler = { pipe in
             let data = pipe.availableData
-            if data.isEmpty { // EOF
+            if data.isEmpty {
                 filelHandler.readabilityHandler = nil
                 group.leave()
                 return
@@ -409,33 +420,43 @@ class ViewController: NSViewController {
             if let line = String(data: data, encoding: String.Encoding.utf8) {
                 DispatchQueue.main.sync {
                 }
-                self.cmd_result = line
+                self.cmd_result = line.replacingOccurrences(of: "\n", with: "")
             } else {
                 print("Error decoding data: \(data.base64EncodedString())")
             }
         }
-        process.launch() // Start process
-        process.waitUntilExit() // Wait for process to terminate.
+        process.launch()
+        process.waitUntilExit()
     }
     
     func check_status_init() {
-        syncShellExec(path: scriptPath, args: ["check_status"])
-        syncShellExec(path: scriptPath, args: ["check_daemon"])
+        let hostname = UserDefaults.standard.string(forKey: "Hostname")
         
-        let status_check = UserDefaults.standard.bool(forKey: "UpdateOK")
-        if status_check == true {
+        shell(cmd: "curl ipecho.net/plain")
+        let real_ip = cmd_result
+        
+        shell(cmd: "dig +short " + hostname! + " | tail -n1")
+        let dyndns_ip = cmd_result
+        
+        if real_ip == dyndns_ip {
             self.status_dot.image=NSImage(named: "NSStatusAvailable")
         } else {
             self.status_dot.image=NSImage(named: "NSStatusUnavailable")
         }
-        let daemon_check = UserDefaults.standard.bool(forKey: "Daemon")
-        if daemon_check == true {
+        
+
+        shell(cmd: "test=$( launchctl list |grep de.slsoft.dyndnsmate ); echo \"$test\"")
+        
+        UserDefaults.standard.set(cmd_result, forKey: "Bla")
+        if cmd_result != "" {
             self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
             self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
         } else {
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
             self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
         }
+
+        //UserDefaults.standard.set(real_ip, forKey: "Bla")
     }
     
     func check_status() {
