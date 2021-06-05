@@ -1,12 +1,12 @@
 //
-//  LetsMove.swift
+//  LetsMoveIt.swift
 //
 //  Created by Sascha Lamprecht 04.06.2021
 //
 
 import Cocoa
 
-class LetsMove: NSViewController {
+class LetsMoveIt: NSViewController {
     
     func ToApps() {
 
