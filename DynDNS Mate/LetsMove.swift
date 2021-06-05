@@ -1,6 +1,5 @@
 //
 //  LetsMove.swift
-//  Sample
 //
 //  Created by Sascha Lamprecht 04.06.2021
 //
@@ -31,7 +30,7 @@ class LetsMove: NSViewController {
         alert.showsSuppressionButton = true
         let Button = NSLocalizedString("Do Not Move", comment: "")
         alert.addButton(withTitle: Button)
-        let CancelButtonText = NSLocalizedString("Move to Applicationsfolder", comment: "")
+        let CancelButtonText = NSLocalizedString("Move to Applications Folder", comment: "")
         alert.addButton(withTitle: CancelButtonText)
 
         if alert.runModal() == .alertFirstButtonReturn {
@@ -63,7 +62,7 @@ class LetsMove: NSViewController {
                     try fileManager.copyItem(atPath: LaunchPath, toPath: path)
                     try fileManager.removeItem(atPath: LaunchPath)
                 } catch {
-                    print("Error")
+                    return
                 }
             } else {
                 let move_to_apps = "osascript -e 'do shell script \"rm -rf /Applications/" + RealAppName + "; cp -r \\\"" + LaunchPath + "\\\" /Applications/; chown -R " + NSUserName() + ":staff \\\"/Applications/" + RealAppName + "\\\"; rm -r \\\"" + LaunchPath + "\\\"\" with administrator privileges'"

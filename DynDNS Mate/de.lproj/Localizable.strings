@@ -5,6 +5,9 @@
 "Any hostname from your account" = "Beliebiger Hostname aus dem Konto";
 
 /* No comment provided by engineer. */
+"Do Not Move" = "Nicht verschieben";
+
+/* No comment provided by engineer. */
 "Dynamic DNS key of hostname" = "Dynamic DNS Schlüssel vom Hostnamen";
 
 /* No comment provided by engineer. */
@@ -14,10 +17,19 @@
 "Install daemon" = "Daemon installieren";
 
 /* No comment provided by engineer. */
+"I can move myself to the Applications folder if you'd like. This will keep your Downloads folder uncluttered." = "Ich kann mich selbst in den Programme-Ordner verschieben, wenn Du möchtest, damit Dein Download-Ordner aufgeräumt bleibt.";
+
+/* No comment provided by engineer. */
 "is:" = "lautet:";
 
 /* No comment provided by engineer. */
 "Master password" = "Hauptpasswort";
+
+/* No comment provided by engineer. */
+"Move to Applications Folder" = "In den Programme-Ordner verschieben";
+
+/* No comment provided by engineer. */
+"Move to Applications folder?" = "In den Programme-Ordner verschieben?";
 
 /* No comment provided by engineer. */
 "Not available" = "Nicht verfügbar";
@@ -33,6 +45,9 @@
 
 /* No comment provided by engineer. */
 "There was something wrong by submitting your credentials. Please check and try again." = "Da ist etwas bei der Übermittlung der Zugangsdaten schiefgelaufen. Bitte prüfe die Angaben noch einmal und versuche es erneut.";
+
+/* No comment provided by engineer. */
+"This will keep your Downloads folder uncluttered." = "Damit Ihr Downloads-Ordner aufgeräumt wird.";
 
 /* No comment provided by engineer. */
 "Uh Oh! An error has occured." = "Oh nein. Ein Fehler ist aufgetreten.";
