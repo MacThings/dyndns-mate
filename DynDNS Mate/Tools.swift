@@ -13,6 +13,7 @@ import AVFoundation
 class Tools: NSViewController {
     
     let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
+    var cmd_result = ""
     
     @IBOutlet var output_window: NSTextView!
     
@@ -33,55 +34,44 @@ class Tools: NSViewController {
     @objc func cancel(_ sender: Any?) {
         self.view.window?.close()
     }
-
+  
     @IBAction func show_ip(_ sender: Any) {
-        input_check()
-        output_window.textStorage?.mutableString.setString("")
-        output_window.string += NSLocalizedString("The IP address of", comment: "") + " " + hostname_field.stringValue + " " + NSLocalizedString("is:", comment: "") + "\n\n"
-        DispatchQueue.global(qos: .background).async {
-            self.syncShellExec(path: self.scriptPath, args: ["show_ip"])
-                DispatchQueue.main.async {
-            }
-        }
+        validate_hostname_input()
+        output_window.string += NSLocalizedString("The IP address of", comment: "") + " " + hostname_field.stringValue + " " + NSLocalizedString("is:", comment: "") + "\n\n" + cmd_result
     }
     
     @IBAction func ping(_ sender: Any) {
-        input_check()
-        output_window.textStorage?.mutableString.setString("")
-        DispatchQueue.global(qos: .background).async {
-            self.syncShellExec(path: self.scriptPath, args: ["ping_host"])
-                DispatchQueue.main.async {
-            }
-        }
+        validate_hostname_input()
+        shell(cmd: "ping -c 3 " + hostname_field.stringValue + "")
+        return
     }
     
     @IBAction func dig(_ sender: Any) {
-        input_check()
-        output_window.textStorage?.mutableString.setString("")
-        DispatchQueue.global(qos: .background).async {
-            self.syncShellExec(path: self.scriptPath, args: ["dig_host"])
-                DispatchQueue.main.async {
-            }
-        }
+        validate_hostname_input()
+        shell(cmd: "dig " + hostname_field.stringValue + "")
+        return
     }
     
     @IBAction func whois(_ sender: Any) {
-        input_check()
-        output_window.textStorage?.mutableString.setString("")
-        DispatchQueue.global(qos: .background).async {
-            self.syncShellExec(path: self.scriptPath, args: ["whois_host"])
-                DispatchQueue.main.async {
-            }
-        }
+        validate_hostname_input()
+        shell(cmd: "whois " + hostname_field.stringValue + "")
+        return
     }
     
-    func input_check() {
-        let host = hostname_field.stringValue
-        UserDefaults.standard.set(host, forKey: "HostnameTools")
-        self.syncShellExec(path: self.scriptPath, args: ["check_input"])
-        
-        let hostcheck = UserDefaults.standard.bool(forKey: "WrongHost")
-        if hostcheck == true {
+    func validate_hostname_input() {
+        if hostname_field.stringValue == ""{
+            wrong_input()
+            return
+        }
+        shell(cmd: "check=$( dig +short " + hostname_field.stringValue + " ); echo \"$check\"")
+        if cmd_result == "\n" {
+            wrong_input()
+            return
+        }
+        output_window.textStorage?.mutableString.setString("")
+    }
+    
+    func wrong_input() {
             let alert = NSAlert()
             alert.messageText = NSLocalizedString("Uh Oh! An error has occured.", comment: "")
             alert.informativeText = NSLocalizedString("The hostname could not be resolved. Please make sure that you input the correct address.", comment: "")
@@ -91,18 +81,15 @@ class Tools: NSViewController {
             alert.addButton(withTitle: Button)
             alert.runModal()
             return
-        }
-        
     }
     
-    func syncShellExec(path: String, args: [String] = []) {
+    func shell(cmd: String) {
         let process            = Process()
         process.launchPath     = "/bin/bash"
-        process.arguments      = [path] + args
+        process.arguments      = ["-c", cmd]
         let outputPipe         = Pipe()
         let filelHandler       = outputPipe.fileHandleForReading
         process.standardOutput = outputPipe
-        
         let group = DispatchGroup()
         group.enter()
         filelHandler.readabilityHandler = { pipe in
@@ -117,6 +104,7 @@ class Tools: NSViewController {
                     self.output_window.string += line
                     self.output_window.scrollToEndOfDocument(nil)
                 }
+                self.cmd_result = line
             } else {
                 print("Error decoding data: \(data.base64EncodedString())")
             }
@@ -124,5 +112,4 @@ class Tools: NSViewController {
         process.launch() // Start process
         process.waitUntilExit() // Wait for process to terminate.
     }
-
 }

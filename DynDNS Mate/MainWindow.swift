@@ -12,6 +12,7 @@ import AVFoundation
 class ViewController: NSViewController {
     
     let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
+    var cmd_result = ""
 
     @IBOutlet weak var daemon_dot: NSImageView!
     @IBOutlet weak var status_dot: NSImageView!
@@ -365,9 +366,8 @@ class ViewController: NSViewController {
     
     
     @IBAction func daemon(_ sender: Any) {
-        syncShellExec(path: scriptPath, args: ["check_daemon"])
-        let daemon_check = UserDefaults.standard.bool(forKey: "Daemon")
-        if daemon_check == true {
+        shell(cmd: "launchctl list |grep de.slsoft.dyndnsmate")
+        if cmd_result != "" {
             self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
             self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
             syncShellExec(path: scriptPath, args: ["uninstall_daemon"])
@@ -377,9 +377,9 @@ class ViewController: NSViewController {
             syncShellExec(path: scriptPath, args: ["install_daemon"])
         }
         
-        check_status_init()
-        //check_status()
+        //UserDefaults.standard.set(cmd_result, forKey: "Bla")
         
+        check_status_init()
     }
     
     func syncShellExec(path: String, args: [String] = []) {
@@ -390,6 +390,34 @@ class ViewController: NSViewController {
         process.waitUntilExit()
     }
 
+    func shell(cmd: String) {
+        let process            = Process()
+        process.launchPath     = "/bin/bash"
+        process.arguments      = ["-c", cmd]
+        let outputPipe         = Pipe()
+        let filelHandler       = outputPipe.fileHandleForReading
+        process.standardOutput = outputPipe
+        let group = DispatchGroup()
+        group.enter()
+        filelHandler.readabilityHandler = { pipe in
+            let data = pipe.availableData
+            if data.isEmpty { // EOF
+                filelHandler.readabilityHandler = nil
+                group.leave()
+                return
+            }
+            if let line = String(data: data, encoding: String.Encoding.utf8) {
+                DispatchQueue.main.sync {
+                }
+                self.cmd_result = line
+            } else {
+                print("Error decoding data: \(data.base64EncodedString())")
+            }
+        }
+        process.launch() // Start process
+        process.waitUntilExit() // Wait for process to terminate.
+    }
+    
     func check_status_init() {
         syncShellExec(path: scriptPath, args: ["check_status"])
         syncShellExec(path: scriptPath, args: ["check_daemon"])
