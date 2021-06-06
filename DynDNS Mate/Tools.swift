@@ -37,7 +37,9 @@ class Tools: NSViewController {
   
     @IBAction func show_ip(_ sender: Any) {
         validate_hostname_input()
-        output_window.string += NSLocalizedString("The IP address of", comment: "") + " " + hostname_field.stringValue + " " + NSLocalizedString("is:", comment: "") + "\n\n" + cmd_result
+        output_window.string += NSLocalizedString("The IP address of", comment: "") + " " + hostname_field.stringValue + " " + NSLocalizedString("is:", comment: "") + "\n\n"
+        shell(cmd: "dig +short " + hostname_field.stringValue + "")
+        return
     }
     
     @IBAction func ping(_ sender: Any) {
@@ -63,7 +65,8 @@ class Tools: NSViewController {
             wrong_input()
             return
         }
-        shell(cmd: "check=$( dig +short " + hostname_field.stringValue + " ); echo \"$check\"")
+        //shell(cmd: "check=$( dig +short " + hostname_field.stringValue + " ); echo \"$check\"")
+        shell(cmd: "test=$( ping -c 1 " + hostname_field.stringValue + " ); echo \"$test\"" )
         if cmd_result == "\n" {
             wrong_input()
             return
@@ -103,8 +106,9 @@ class Tools: NSViewController {
                 DispatchQueue.main.sync {
                     self.output_window.string += line
                     self.output_window.scrollToEndOfDocument(nil)
+                    self.cmd_result = line
                 }
-                self.cmd_result = line
+                
             } else {
                 print("Error decoding data: \(data.base64EncodedString())")
             }

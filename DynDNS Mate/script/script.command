@@ -71,17 +71,6 @@ function set_plist()
     fi
 }
 
-function check_daemon()
-{
-    daemon_check=$( launchctl list |grep de.slsoft.dyndnsmate )
-    if [[ "$daemon_check" = "" ]]; then
-        _helpDefaultWriteBool NO "Daemon"
-        rm /usr/local/bin/dyndnsmate
-    else
-        _helpDefaultWriteBool YES "Daemon"
-    fi
-}
-
 function changeip()
 {
     hostname=$( _helpDefaultRead "Hostname" )

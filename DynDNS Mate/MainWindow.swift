@@ -14,14 +14,6 @@ class ViewController: NSViewController {
     let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
     var cmd_result = ""
     
-    func userDesktop() -> String {
-        let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
-        let userDesktopDirectory = paths[0]
-        return userDesktopDirectory
-    }
-    
-    let userDesktopDirectory:String = NSHomeDirectory()
-
     @IBOutlet weak var daemon_dot: NSImageView!
     @IBOutlet weak var status_dot: NSImageView!
         
@@ -46,12 +38,13 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var daemon_button: NSButton!
     
+    @IBOutlet var output_window: NSTextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
-   
+
         let company_init = UserDefaults.standard.string(forKey: "Company")
         if company_init == nil{
             let langStr = Locale.current.languageCode
@@ -81,6 +74,15 @@ class ViewController: NSViewController {
         if interval_init == nil{
             UserDefaults.standard.set("60", forKey: "Interval")
         }
+        
+        let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
+        var LaunchPath = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
+        LaunchPath.removeLast()
+        let BundleAppName = Bundle.main.infoDictionary!["CFBundleName"] as! String
+        let RealAppName = String(LaunchPath.suffix(from: (LaunchPath.range(of: BundleAppName)?.lowerBound)!))
+        UserDefaults.standard.set(LaunchPath, forKey: "LaunchPath")
+        UserDefaults.standard.set(RealAppName, forKey: "RealAppName")
+        
         
         check_status_init()
         
@@ -347,6 +349,14 @@ class ViewController: NSViewController {
     }
     
     @IBAction func update(_ sender: Any) {
+        let hostname = UserDefaults.standard.string(forKey: "Hostname")
+        let username = UserDefaults.standard.string(forKey: "Login")!
+        let password = UserDefaults.standard.string(forKey: "Password")!
+        let optional = UserDefaults.standard.string(forKey: "Optional")
+        
+        shell(cmd: "curl ipecho.net/plain")
+        let real_ip = cmd_result
+        
         let company = UserDefaults.standard.string(forKey: "Company")
         if company == "ChangeIP" {
             syncShellExec(path: scriptPath, args: ["changeip"])
@@ -365,17 +375,24 @@ class ViewController: NSViewController {
         } else if company == "Hurricane Electric" {
             syncShellExec(path: scriptPath, args: ["hurricane"])
         } else if company == "NoIp" {
-            syncShellExec(path: scriptPath, args: ["noip"])
+            shell(cmd: "curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname! + "&myip=" + real_ip + "\"" )
+            //shell(cmd: "curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname! + "&myip=84.118.116.220\"" )
+            //let test: () = print("curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname! + "&myip=" + real_ip + "\"")
+            //update=$( curl -s -k -u $username:$password "https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip" )
+            //scheme=$( echo "curl -s -k -u $username:$password \"https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip\"" )
         } else if company == "Strato" {
             syncShellExec(path: scriptPath, args: ["strato"])
         }
+
         check_status()
     }
     
     
     @IBAction func daemon(_ sender: Any) {
         let userhome = self.userDesktopDirectory
-        shell(cmd: "launchctl list |grep de.slsoft.dyndnsmate")
+        let launchpath = "\"" + UserDefaults.standard.string(forKey: "LaunchPath")! + "\""
+        
+        shell(cmd: "check=$( launchctl list |grep de.slsoft.dyndnsmate ); echo \"$check\"")
         if cmd_result != "" {
             self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
             self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
@@ -383,9 +400,9 @@ class ViewController: NSViewController {
             shell(cmd: "rm " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
         } else {
             let interval = String(Int(UserDefaults.standard.string(forKey: "Interval")!)!*60)
-            shell(cmd: "cp DynDNS*.app/Contents/Resources/script/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
-            shell(cmd: "chmod 644 " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
-            shell(cmd: "DynDNS*.app/Contents/Resources/bin/PlistBuddy -c \"Set :StartInterval " + interval + "\" " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
+            shell(cmd: "cp -v " + launchpath + "/Contents/Resources/script/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
+            shell(cmd: "chmod -v 644 " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
+            shell(cmd: "" + launchpath + "/Contents/Resources/bin/PlistBuddy -c \"Set :StartInterval " + interval + "\" " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             shell(cmd: "launchctl load -w " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
             self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
@@ -419,8 +436,11 @@ class ViewController: NSViewController {
             }
             if let line = String(data: data, encoding: String.Encoding.utf8) {
                 DispatchQueue.main.sync {
+                    //self.output_window.string += line
+                    //self.output_window.scrollToEndOfDocument(nil)
+                    self.cmd_result = line.replacingOccurrences(of: "\n", with: "")
                 }
-                self.cmd_result = line.replacingOccurrences(of: "\n", with: "")
+                
             } else {
                 print("Error decoding data: \(data.base64EncodedString())")
             }
@@ -435,7 +455,7 @@ class ViewController: NSViewController {
         shell(cmd: "curl ipecho.net/plain")
         let real_ip = cmd_result
         
-        shell(cmd: "dig +short " + hostname! + " | tail -n1")
+        shell(cmd: "check=$( dig +short " + hostname! + " ); echo \"$check\"")
         let dyndns_ip = cmd_result
         
         if real_ip == dyndns_ip {
@@ -443,11 +463,7 @@ class ViewController: NSViewController {
         } else {
             self.status_dot.image=NSImage(named: "NSStatusUnavailable")
         }
-        
-
-        shell(cmd: "test=$( launchctl list |grep de.slsoft.dyndnsmate ); echo \"$test\"")
-        
-        UserDefaults.standard.set(cmd_result, forKey: "Bla")
+        shell(cmd: "check=$( launchctl list |grep de.slsoft.dyndnsmate ); echo \"$check\"")
         if cmd_result != "" {
             self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
             self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
@@ -455,7 +471,6 @@ class ViewController: NSViewController {
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
             self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
         }
-
         //UserDefaults.standard.set(real_ip, forKey: "Bla")
     }
     
@@ -476,6 +491,12 @@ class ViewController: NSViewController {
                 return
         }
     }
-    
+
+    func userDesktop() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
+        let userDesktopDirectory = paths[0]
+        return userDesktopDirectory
+    }
+    let userDesktopDirectory:String = NSHomeDirectory()
 }
 
