@@ -373,7 +373,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xu2-yS-Kff">
-                                            <rect key="frame" x="-2" y="6" width="144" height="21"/>
+                                            <rect key="frame" x="-2" y="5" width="144" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="aJD-TC-jpm">
                                                 <font key="font" metaFont="systemBold" size="17"/>
@@ -472,6 +472,7 @@
                         <outlet property="optional_lable" destination="EfO-bd-gGW" id="kKE-Pm-Mnt"/>
                         <outlet property="password_field" destination="Q9c-6n-v7F" id="811-8a-vWT"/>
                         <outlet property="password_lable" destination="ANB-CO-fmn" id="eiA-ao-cSi"/>
+                        <outlet property="real_ip" destination="xu2-yS-Kff" id="tmX-4y-RBt"/>
                         <outlet property="status_dot" destination="12A-IR-GGU" id="MHG-W2-vwL"/>
                     </connections>
                 </viewController>

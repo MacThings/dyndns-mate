@@ -35,6 +35,9 @@ class ViewController: NSViewController {
         
     @IBOutlet weak var daemon_button: NSButton!
     
+    @IBOutlet weak var real_ip: NSTextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -183,6 +186,9 @@ class ViewController: NSViewController {
             self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         }
+        
+        shell(cmd: "curl -s ipecho.net/plain")
+        real_ip.stringValue = cmd_result
   
     }
 
