@@ -52,24 +52,7 @@ function _helpDefaultDelete()
     fi
 }
 
-real_ip=$( curl ipecho.net/plain )
-hostname=$( _helpDefaultRead "Hostname" )
-dyndns_ip=$( dig +short $hostname )
-_helpDefaultWrite "IP" "$real_ip"
 
-function set_plist()
-{
-
-     if [[ "$update" == *"good"* ]] || [[ "$update" == *"nochg"* ]] || [[ "$update" == *"not changed"* ]] || \
-        [[ "$update" == *"Updated"* ]] || [[ "$update" == *"OK"* ]]; then
-        _helpDefaultWriteBool YES "UpdateOK"
-        echo "ok"
-        echo "$scheme" > /usr/local/bin/dyndnsmate
-    else
-        _helpDefaultWriteBool NO "UpdateOK"
-        echo "error"
-    fi
-}
 
 function changeip()
 {
@@ -91,17 +74,6 @@ function dnsmadeeasy()
     
     update=$( curl https://cp.dnsmadeeasy.com/servlet/updateip?username=$username@$hostname&password=$password&id=$optional&ip=$real_ip )
     scheme=$( echo "curl https://cp.dnsmadeeasy.com/servlet/updateip?username=$username@$hostname&password=$password&id=$optional&ip=$real_ip" )
-}
-
-
-function duckdns()
-{
-    hostname=$( _helpDefaultRead "Hostname" )
-    password=$( _helpDefaultRead "Password" )
-    update=$( curl -s -k https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip )
-    scheme=$( echo "curl -s -k https://www.duckdns.org/update?domains=$hostname&token=$password&ip=$real_ip" )
-    
-    set_plist
 }
 
 function dyn()
@@ -144,27 +116,6 @@ function google()
     password=$( _helpDefaultRead "Password" )
     update=$( curl https://$username:$password@domains.google.com/nic/update?hostname=$hostname )
     scheme=$( echo "curl https://$username:$password@domains.google.com/nic/update?hostname=$hostname" )
-    
-    set_plist
-}
-
-function hurricane()
-{
-    hostname=$( _helpDefaultRead "Hostname" )
-    password=$( _helpDefaultRead "Password" )
-    update=$( curl https://dyn.dns.he.net/nic/update?hostname=$hostname&password=$password&myip=$real_ip )
-    scheme=$( echo "https://dyn.dns.he.net/nic/update?hostname=$hostname&password=$password&myip=$real_ip" )
-    
-    set_plist
-}
-
-function noip()
-{
-    hostname=$( _helpDefaultRead "Hostname" )
-    username=$( _helpDefaultRead "Login" )
-    password=$( _helpDefaultRead "Password" )
-    update=$( curl -s -k -u $username:$password "https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip" )
-    scheme=$( echo "curl -s -k -u $username:$password \"https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip\"" )
     
     set_plist
 }

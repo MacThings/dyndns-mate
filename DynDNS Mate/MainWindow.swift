@@ -340,26 +340,46 @@ class ViewController: NSViewController {
         let real_ip = cmd_result
         
         let company = UserDefaults.standard.string(forKey: "Company")
+        
         if company == "ChangeIP" {
-            syncShellExec(path: scriptPath, args: ["changeip"])
-        } else if company == "DNSMadeEasy" {
-            syncShellExec(path: scriptPath, args: ["dnsmadeeasy"])
-        } else if company == "DuckDNS" {
-            syncShellExec(path: scriptPath, args: ["duckdns"])
-        } else if company == "Dyn" {
-            syncShellExec(path: scriptPath, args: ["dyn"])
-        } else if company == "EasyDNS" {
-            syncShellExec(path: scriptPath, args: ["easydns"])
-        } else if company == "FreeDNS" {
-            syncShellExec(path: scriptPath, args: ["freedns"])
-        } else if company == "Google" {
-            syncShellExec(path: scriptPath, args: ["google"])
-        } else if company == "Hurricane Electric" {
-            syncShellExec(path: scriptPath, args: ["hurricane"])
-        } else if company == "NoIp" {
-            let api = "curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname + "\""
+            let api = "curl -4 \"https://nic.changeip.com/nic/update&u=" + username + "&p=" + hostname + "&hostname=" + hostname + "\""
             try? api.data(using: .utf8)!.write(to: path)
             shell(cmd: api )
+        
+        } else if company == "DNSMadeEasy" {
+            let api = "curl -4 \"https://cp.dnsmadeeasy.com/servlet/updateip?username=" + username + "@" + hostname + "&password=" + password + "&id=" + optional + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
+        
+        } else if company == "DuckDNS" {
+            let api = "curl -4 -s -k \"https://www.duckdns.org/update?domains=" + hostname + "&token=" + password + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
+        
+        } else if company == "Dyn" {
+            let api = "curl -4 -s \"https://" + username + ":" + password + "@members.dyndns.org/nic/update?hostname=" + hostname + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
+        
+        } else if company == "EasyDNS" {
+            syncShellExec(path: scriptPath, args: ["easydns"])
+        
+        } else if company == "FreeDNS" {
+            syncShellExec(path: scriptPath, args: ["freedns"])
+        
+        } else if company == "Google" {
+            syncShellExec(path: scriptPath, args: ["google"])
+        
+        } else if company == "Hurricane Electric" {
+            let api = "curl -4 \"https://dyn.dns.he.net/nic/update?hostname=" + hostname + "&password=" + password + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
+        
+        } else if company == "NoIp" {
+            let api = "curl -4 -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
+        
         } else if company == "Strato" {
             syncShellExec(path: scriptPath, args: ["strato"])
         }
