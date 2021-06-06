@@ -439,7 +439,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="Qt3-Qu-mog" kind="popover" popoverAnchorView="llq-xb-avf" popoverBehavior="t" preferredEdge="maxY" id="O9d-Qu-yK3"/>
+                                    <segue destination="Qt3-Qu-mog" kind="popover" popoverAnchorView="llq-xb-avf" popoverBehavior="t" preferredEdge="maxY" id="dfi-JO-pHF"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s9c-gn-tMl">
@@ -610,7 +610,7 @@
                 <userDefaultsController id="wMF-3Y-ViI"/>
                 <userDefaultsController id="RXZ-mt-kKR"/>
             </objects>
-            <point key="canvasLocation" x="589.5" y="643.5"/>
+            <point key="canvasLocation" x="643" y="644"/>
         </scene>
         <!--About-->
         <scene sceneID="i9o-QS-aHc">

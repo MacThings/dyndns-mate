@@ -435,8 +435,8 @@ class ViewController: NSViewController {
             shell(cmd: "rm " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
         } else {
             let interval = String(Int(interval_field.stringValue)!*60)
-            shell(cmd: "cp -v " + launchpath + "/Contents/Resources/plist/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
-            shell(cmd: "chmod -v 644 " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
+            shell(cmd: "cp " + launchpath + "/Contents/Resources/plist/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
+            shell(cmd: "chmod 644 " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             shell(cmd: "" + launchpath + "/usr/libexec/PlistBuddy -c \"Set :StartInterval " + interval + "\" " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             shell(cmd: "launchctl load -w " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
@@ -488,8 +488,6 @@ class ViewController: NSViewController {
             }
             if let line = String(data: data, encoding: String.Encoding.utf8) {
                 DispatchQueue.main.sync {
-                    //self.output_window.string += line
-                    //self.output_window.scrollToEndOfDocument(nil)
                     self.cmd_result = line.replacingOccurrences(of: "\n", with: "")
                 }
                 

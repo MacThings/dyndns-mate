@@ -12,7 +12,6 @@ import AVFoundation
 
 class Tools: NSViewController {
     
-    let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
     var cmd_result = ""
     
     @IBOutlet var output_window: NSTextView!
