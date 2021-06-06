@@ -6,8 +6,6 @@
 //
 
 import Cocoa
-import CoreFoundation
-import AVFoundation
 
 class ViewController: NSViewController {
     
@@ -21,24 +19,22 @@ class ViewController: NSViewController {
     @IBOutlet weak var company_selector: NSPopUpButton!
     
     @IBOutlet weak var create_account: NSButton!
-    
-    
+        
     @IBOutlet weak var hostname_lable: NSTextField!
-    @IBOutlet weak var hostname: NSTextField!
+    @IBOutlet weak var hostname_field: NSTextField!
     
     @IBOutlet weak var login_lable: NSTextField!
-    @IBOutlet weak var login: NSTextField!
+    @IBOutlet weak var login_field: NSTextField!
     
-    @IBOutlet weak var password: NSSecureTextField!
     @IBOutlet weak var password_lable: NSTextField!
-
-    @IBOutlet weak var optional: NSTextField!
+    @IBOutlet weak var password_field: NSSecureTextField!
+    
     @IBOutlet weak var optional_lable: NSTextField!
+    @IBOutlet weak var optional_field: NSTextField!
     
-    
+    @IBOutlet weak var interval_field: NSTextField!
+        
     @IBOutlet weak var daemon_button: NSButton!
-    
-    @IBOutlet var output_window: NSTextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,251 +70,236 @@ class ViewController: NSViewController {
         if interval_init == nil{
             UserDefaults.standard.set("60", forKey: "Interval")
         }
-        
-        let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
-        var LaunchPath = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
-        LaunchPath.removeLast()
-        let BundleAppName = Bundle.main.infoDictionary!["CFBundleName"] as! String
-        let RealAppName = String(LaunchPath.suffix(from: (LaunchPath.range(of: BundleAppName)?.lowerBound)!))
-        UserDefaults.standard.set(LaunchPath, forKey: "LaunchPath")
-        UserDefaults.standard.set(RealAppName, forKey: "RealAppName")
-        
-        
+
         check_status_init()
         
         let getcompany = UserDefaults.standard.string(forKey: "Company")
         if getcompany == "ChangeIP" {
             self.company_logo.image=NSImage(named: "changeip_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "CloudFlare"{
             self.company_logo.image=NSImage(named: "cloudflare_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("E-mail address", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("API key (token)", comment: "")
-            self.optional.isEnabled = true
+            self.optional_field.isEnabled = true
             self.optional_lable.stringValue = NSLocalizedString("Root domain (of the hostname)", comment: "")
             let optional = UserDefaults.standard.string(forKey: "Optional")
             if optional == nil{
                 UserDefaults.standard.set("", forKey: "Optional")
             } else {
-                self.optional.stringValue = optional!
+                self.optional_field.stringValue = optional!
             }
         } else if getcompany == "DNSMadeEasy"{
             self.company_logo.image=NSImage(named: "dnsmadeeasy_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = true
+            self.optional_field.isEnabled = true
             self.optional_lable.stringValue = NSLocalizedString("Dynamic DNS ID", comment: "")
             let optional = UserDefaults.standard.string(forKey: "Optional")
             if optional == nil{
                 UserDefaults.standard.set("", forKey: "Optional")
             } else {
-                self.optional.stringValue = optional!
+                self.optional_field.stringValue = optional!
             }
         }else if getcompany == "DuckDNS"{
             self.company_logo.image=NSImage(named: "duckdns_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Account", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = "Token"
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Dyn"{
             self.company_logo.image=NSImage(named: "dyn_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "EasyDNS"{
             self.company_logo.image=NSImage(named: "easydns_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "FreeDNS"{
             self.company_logo.image=NSImage(named: "freedns_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Google" {
             self.company_logo.image=NSImage(named: "google_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Hurricane Electric"{
             self.company_logo.image=NSImage(named: "hurricane_logo")
-            self.login.isEnabled = false
-            self.login.stringValue = NSLocalizedString("Not available", comment: "")
-            self.password.isEnabled = true
+            self.login_field.isEnabled = false
+            self.login_field.stringValue = NSLocalizedString("Not available", comment: "")
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Dynamic DNS key of hostname", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "NoIp"{
             self.company_logo.image=NSImage(named: "noip_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Strato"{
             self.company_logo.image=NSImage(named: "strato_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Any hostname from your account", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Master password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         }
   
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-
     @IBAction func select_company(_ sender: Any) {
         let login_content = UserDefaults.standard.string(forKey: "Login")
-        self.login.stringValue = login_content!
+        self.login_field.stringValue = login_content!
         
         let getcompany = (sender as AnyObject).selectedCell()!.title
         if getcompany == "ChangeIP" {
             self.company_logo.image=NSImage(named: "changeip_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "CloudFlare"{
             self.company_logo.image=NSImage(named: "cloudflare_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("E-mail address", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("API key (token)", comment: "")
-            self.optional.isEnabled = true
+            self.optional_field.isEnabled = true
             self.optional_lable.stringValue = NSLocalizedString("Root domain (of the hostname)", comment: "")
             let optional = UserDefaults.standard.string(forKey: "Optional")
             if optional == nil{
                 UserDefaults.standard.set("", forKey: "Optional")
             } else {
-                self.optional.stringValue = optional!
+                self.optional_field.stringValue = optional!
             }
         } else if getcompany == "DNSMadeEasy"{
             self.company_logo.image=NSImage(named: "dnsmadeeasy_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = true
+            self.optional_field.isEnabled = true
             self.optional_lable.stringValue = NSLocalizedString("Dynamic DNS ID", comment: "")
             let optional = UserDefaults.standard.string(forKey: "Optional")
             if optional == nil{
                 UserDefaults.standard.set("", forKey: "Optional")
             } else {
-                self.optional.stringValue = optional!
+                self.optional_field.stringValue = optional!
             }
         } else if getcompany == "DuckDNS"{
             self.company_logo.image=NSImage(named: "duckdns_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Account", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = "Token"
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Dyn"{
             self.company_logo.image=NSImage(named: "dyn_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "EasyDNS"{
             self.company_logo.image=NSImage(named: "easydns_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "FreeDNS"{
             self.company_logo.image=NSImage(named: "freedns_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Google" {
             self.company_logo.image=NSImage(named: "google_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Hurricane Electric"{
             self.company_logo.image=NSImage(named: "hurricane_logo")
-            self.login.isEnabled = false
-            self.login.stringValue = NSLocalizedString("Not available", comment: "")
-            self.password.isEnabled = true
+            self.login_field.isEnabled = false
+            self.login_field.stringValue = NSLocalizedString("Not available", comment: "")
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Dynamic DNS key of hostname", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "NoIp"{
             self.company_logo.image=NSImage(named: "noip_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Username", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         } else if getcompany == "Strato"{
             self.company_logo.image=NSImage(named: "strato_logo")
-            self.login.isEnabled = true
+            self.login_field.isEnabled = true
             self.login_lable.stringValue = NSLocalizedString("Any hostname from your account", comment: "")
-            self.password.isEnabled = true
+            self.password_field.isEnabled = true
             self.password_lable.stringValue = NSLocalizedString("Master password", comment: "")
-            self.optional.isEnabled = false
-            self.optional.stringValue = NSLocalizedString("Not available", comment: "")
+            self.optional_field.isEnabled = false
+            self.optional_field.stringValue = NSLocalizedString("Not available", comment: "")
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         }
     }
@@ -349,12 +330,13 @@ class ViewController: NSViewController {
     }
     
     @IBAction func update(_ sender: Any) {
-        let hostname = UserDefaults.standard.string(forKey: "Hostname")
-        let username = UserDefaults.standard.string(forKey: "Login")!
-        let password = UserDefaults.standard.string(forKey: "Password")!
-        let optional = UserDefaults.standard.string(forKey: "Optional")
+        let hostname = hostname_field.stringValue
+        let username = login_field.stringValue
+        let password = password_field.stringValue
+        let optional = optional_field.stringValue
+        let path = URL(fileURLWithPath: "/usr/local/bin/dyndnsmate")
         
-        shell(cmd: "curl ipecho.net/plain")
+        shell(cmd: "curl -s ipecho.net/plain")
         let real_ip = cmd_result
         
         let company = UserDefaults.standard.string(forKey: "Company")
@@ -375,22 +357,47 @@ class ViewController: NSViewController {
         } else if company == "Hurricane Electric" {
             syncShellExec(path: scriptPath, args: ["hurricane"])
         } else if company == "NoIp" {
-            shell(cmd: "curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname! + "&myip=" + real_ip + "\"" )
-            //shell(cmd: "curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname! + "&myip=84.118.116.220\"" )
-            //let test: () = print("curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname! + "&myip=" + real_ip + "\"")
-            //update=$( curl -s -k -u $username:$password "https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip" )
-            //scheme=$( echo "curl -s -k -u $username:$password \"https://dynupdate.no-ip.com/nic/update?hostname=$hostname&myip=$real_ip\"" )
+            let api = "curl -s -k -u " + username + ":" + password + " \"https://dynupdate.no-ip.com/nic/update?hostname=" + hostname + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
         } else if company == "Strato" {
             syncShellExec(path: scriptPath, args: ["strato"])
         }
-
-        check_status()
+         
+        // Checks if update was successful or necessary
+        let codes = ["good", "nochg", "not changed", "Updated", "OK"]
+        for code in codes {
+            if (cmd_result.contains(code)) {
+                self.status_dot.image=NSImage(named: "NSStatusAvailable")
+                return
+            }
+        }
+        // Fallback if answer of check above is not correct/clear
+        shell(cmd: "check=$( dig +short " + hostname + " ); echo \"$check\"")
+        let dyndns_ip = cmd_result
+        
+        if real_ip == dyndns_ip {
+            self.status_dot.image=NSImage(named: "NSStatusAvailable")
+        } else {
+            self.status_dot.image=NSImage(named: "NSStatusUnavailable")
+                let alert = NSAlert()
+                alert.messageText = NSLocalizedString("Uh Oh! An error has occured.", comment: "")
+                alert.informativeText = NSLocalizedString("There was something wrong by submitting your credentials. Please check and try again.", comment: "")
+                alert.alertStyle = .warning
+                alert.icon = NSImage(named: "AppLogo")
+                let Button = NSLocalizedString("I understand", comment: "")
+                alert.addButton(withTitle: Button)
+                alert.runModal()
+                return
+        }
     }
-    
     
     @IBAction func daemon(_ sender: Any) {
         let userhome = self.userDesktopDirectory
-        let launchpath = "\"" + UserDefaults.standard.string(forKey: "LaunchPath")! + "\""
+        let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
+        var LaunchPath = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "%20", with: " ")
+        LaunchPath.removeLast()
+        let launchpath = "\"" + LaunchPath + "\""
         
         shell(cmd: "check=$( launchctl list |grep de.slsoft.dyndnsmate ); echo \"$check\"")
         if cmd_result != "" {
@@ -399,7 +406,7 @@ class ViewController: NSViewController {
             shell(cmd: "launchctl unload -w " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             shell(cmd: "rm " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
         } else {
-            let interval = String(Int(UserDefaults.standard.string(forKey: "Interval")!)!*60)
+            let interval = String(Int(interval_field.stringValue)!*60)
             shell(cmd: "cp -v " + launchpath + "/Contents/Resources/script/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
             shell(cmd: "chmod -v 644 " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             shell(cmd: "" + launchpath + "/Contents/Resources/bin/PlistBuddy -c \"Set :StartInterval " + interval + "\" " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
@@ -408,6 +415,30 @@ class ViewController: NSViewController {
             self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
         }
         check_status_init()
+    }
+    
+    func check_status_init() {
+        let hostname = hostname_field.stringValue
+        
+        shell(cmd: "curl -s ipecho.net/plain")
+        let real_ip = cmd_result
+        
+        shell(cmd: "check=$( dig +short " + hostname + " ); echo \"$check\"")
+        let dyndns_ip = cmd_result
+        
+        if real_ip == dyndns_ip {
+            self.status_dot.image=NSImage(named: "NSStatusAvailable")
+        } else {
+            self.status_dot.image=NSImage(named: "NSStatusUnavailable")
+        }
+        shell(cmd: "check=$( launchctl list |grep de.slsoft.dyndnsmate ); echo \"$check\"")
+        if cmd_result != "" {
+            self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
+            self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
+        } else {
+            self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
+            self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
+        }
     }
     
     func syncShellExec(path: String, args: [String] = []) {
@@ -449,49 +480,6 @@ class ViewController: NSViewController {
         process.waitUntilExit()
     }
     
-    func check_status_init() {
-        let hostname = UserDefaults.standard.string(forKey: "Hostname")
-        
-        shell(cmd: "curl ipecho.net/plain")
-        let real_ip = cmd_result
-        
-        shell(cmd: "check=$( dig +short " + hostname! + " ); echo \"$check\"")
-        let dyndns_ip = cmd_result
-        
-        if real_ip == dyndns_ip {
-            self.status_dot.image=NSImage(named: "NSStatusAvailable")
-        } else {
-            self.status_dot.image=NSImage(named: "NSStatusUnavailable")
-        }
-        shell(cmd: "check=$( launchctl list |grep de.slsoft.dyndnsmate ); echo \"$check\"")
-        if cmd_result != "" {
-            self.daemon_dot.image=NSImage(named: "NSStatusAvailable")
-            self.daemon_button.title = NSLocalizedString("Uninstall daemon", comment: "")
-        } else {
-            self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
-            self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
-        }
-        //UserDefaults.standard.set(real_ip, forKey: "Bla")
-    }
-    
-    func check_status() {
-        let status_check = UserDefaults.standard.bool(forKey: "UpdateOK")
-        if status_check == true {
-            self.status_dot.image=NSImage(named: "NSStatusAvailable")
-        } else {
-            self.status_dot.image=NSImage(named: "NSStatusUnavailable")
-                let alert = NSAlert()
-                alert.messageText = NSLocalizedString("Uh Oh! An error has occured.", comment: "")
-                alert.informativeText = NSLocalizedString("There was something wrong by submitting your credentials. Please check and try again.", comment: "")
-                alert.alertStyle = .warning
-                alert.icon = NSImage(named: "AppLogo")
-                let Button = NSLocalizedString("I understand", comment: "")
-                alert.addButton(withTitle: Button)
-                alert.runModal()
-                return
-        }
-    }
-
     func userDesktop() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true)
         let userDesktopDirectory = paths[0]
@@ -499,4 +487,3 @@ class ViewController: NSViewController {
     }
     let userDesktopDirectory:String = NSHomeDirectory()
 }
-

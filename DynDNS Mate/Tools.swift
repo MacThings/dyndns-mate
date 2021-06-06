@@ -44,7 +44,7 @@ class Tools: NSViewController {
     
     @IBAction func ping(_ sender: Any) {
         validate_hostname_input()
-        shell(cmd: "ping -c 3 " + hostname_field.stringValue + "")
+        shell(cmd: "ping -c 2 " + hostname_field.stringValue + "")
         return
     }
     
@@ -65,7 +65,6 @@ class Tools: NSViewController {
             wrong_input()
             return
         }
-        //shell(cmd: "check=$( dig +short " + hostname_field.stringValue + " ); echo \"$check\"")
         shell(cmd: "test=$( ping -c 1 " + hostname_field.stringValue + " ); echo \"$test\"" )
         if cmd_result == "\n" {
             wrong_input()
