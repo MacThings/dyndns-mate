@@ -9,7 +9,6 @@ import Cocoa
 
 class ViewController: NSViewController {
     
-    let scriptPath = Bundle.main.path(forResource: "/script/script", ofType: "command")!
     var cmd_result = ""
     
     @IBOutlet weak var daemon_dot: NSImageView!
@@ -362,13 +361,19 @@ class ViewController: NSViewController {
             shell(cmd: api )
         
         } else if company == "EasyDNS" {
-            syncShellExec(path: scriptPath, args: ["easydns"])
+            let api = "curl -4 -s -u " + username + ":" + password + " \"https://members.easydns.com/dyn/dyndns.php?wildcard=off&hostname=" + hostname + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
         
         } else if company == "FreeDNS" {
-            syncShellExec(path: scriptPath, args: ["freedns"])
+            let api = "curl -4 -u " + username + ":" + password + " \"https://freedns.afraid.org/nic/update?hostname=" + hostname + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
         
         } else if company == "Google" {
-            syncShellExec(path: scriptPath, args: ["google"])
+            let api = "curl -4 -u " + username + ":" + password + " \"https://domains.google.com/nic/update?hostname=" + hostname + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
         
         } else if company == "Hurricane Electric" {
             let api = "curl -4 \"https://dyn.dns.he.net/nic/update?hostname=" + hostname + "&password=" + password + "\""
@@ -381,7 +386,10 @@ class ViewController: NSViewController {
             shell(cmd: api )
         
         } else if company == "Strato" {
-            syncShellExec(path: scriptPath, args: ["strato"])
+            let api = "curl --silent --show-error --insecure -u " + username + ":" + password + " \"https://dyndns.strato.com/nic/update?hostname=" + hostname + "\""
+            try? api.data(using: .utf8)!.write(to: path)
+            shell(cmd: api )
+
         }
          
         // Checks if update was successful or necessary
@@ -427,9 +435,9 @@ class ViewController: NSViewController {
             shell(cmd: "rm " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
         } else {
             let interval = String(Int(interval_field.stringValue)!*60)
-            shell(cmd: "cp -v " + launchpath + "/Contents/Resources/script/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
+            shell(cmd: "cp -v " + launchpath + "/Contents/Resources/plist/de.slsoft.dyndnsmate.plist " + userhome + "/Library/LaunchAgents/")
             shell(cmd: "chmod -v 644 " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
-            shell(cmd: "" + launchpath + "/Contents/Resources/bin/PlistBuddy -c \"Set :StartInterval " + interval + "\" " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
+            shell(cmd: "" + launchpath + "/usr/libexec/PlistBuddy -c \"Set :StartInterval " + interval + "\" " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             shell(cmd: "launchctl load -w " + userhome + "/Library/LaunchAgents/de.slsoft.dyndnsmate.plist")
             self.daemon_dot.image=NSImage(named: "NSStatusUnavailable")
             self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
@@ -460,18 +468,11 @@ class ViewController: NSViewController {
             self.daemon_button.title = NSLocalizedString("Install daemon", comment: "")
         }
     }
-    
-    func syncShellExec(path: String, args: [String] = []) {
-        let process            = Process()
-        process.launchPath     = "/bin/bash"
-        process.arguments      = [path] + args
-        process.launch()
-        process.waitUntilExit()
-    }
 
     func shell(cmd: String) {
         let process            = Process()
         process.launchPath     = "/bin/bash"
+
         process.arguments      = ["-c", cmd]
         let outputPipe         = Pipe()
         let filelHandler       = outputPipe.fileHandleForReading
