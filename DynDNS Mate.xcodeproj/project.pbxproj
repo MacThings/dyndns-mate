@@ -24,22 +24,12 @@
 		2A4019D52662358200D51495 /* script */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = script;
+			dstPath = plist;
 			dstSubfolderSpec = 7;
 			files = (
 				2A4019E12662ACAF00D51495 /* de.slsoft.dyndnsmate.plist in script */,
 			);
 			name = script;
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2A4019E92662ADBE00D51495 /* bin */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = bin;
-			dstSubfolderSpec = 7;
-			files = (
-			);
-			name = bin;
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -129,7 +119,6 @@
 				2A4019B72662305600D51495 /* Frameworks */,
 				2A4019B82662305600D51495 /* Resources */,
 				2A4019D52662358200D51495 /* script */,
-				2A4019E92662ADBE00D51495 /* bin */,
 				2A50365F2662E5DD00C39BE8 /* Zip App and send to Homeshare */,
 			);
 			buildRules = (
@@ -211,7 +200,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -r /Applications/DynDNS\\ Mate.app\nrm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/plist/Sparkle.framework\ncp -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app /Applications/\nif [ -d /Volumes/Homeshare/Xcode/dyndnsmate ]; then\ncp \"/Users/luigi/Documents/Xcode/dyndnsmate/DynDNS Mate/dyndnsmate.html\" \"/Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.html\"\nrm /Volumes/Homeshare/Xcode/dyndns-mate/upload/dyndnsmate.zip 2> /dev/null\ncd /Applications\nditto -c -k --sequesterRsrc --keepParent DynDNS\\ Mate.app /Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.zip\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nrm -r /Applications/DynDNS\\ Mate.app\nrm -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app/Contents/Resources/plist/Sparkle.framework\ncp -r \"${TARGET_BUILD_DIR}\"/DynDNS\\ Mate.app /Applications/\nif [ -d /Volumes/Homeshare/Xcode/dyndnsmate ]; then\ncp \"/Users/luigi/Documents/Xcode/dyndnsmate/DynDNS Mate/dyndnsmate.html\" \"/Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.html\"\nrm /Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.zip 2> /dev/null\ncd /Applications\nditto -c -k --sequesterRsrc --keepParent DynDNS\\ Mate.app /Volumes/Homeshare/Xcode/dyndnsmate/upload/dyndnsmate.zip\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
