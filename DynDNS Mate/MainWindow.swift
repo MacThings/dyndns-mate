@@ -187,7 +187,7 @@ class ViewController: NSViewController {
             self.optional_lable.stringValue = NSLocalizedString("Optional", comment: "")
         }
         
-        shell(cmd: "curl -s ipecho.net/plain")
+        shell(cmd: "curl -s https://ipinfo.io/ip")
         real_ip.stringValue = cmd_result
   
     }
@@ -341,7 +341,7 @@ class ViewController: NSViewController {
         let optional = optional_field.stringValue
         let path = URL(fileURLWithPath: "/usr/local/bin/dyndnsmate")
         
-        shell(cmd: "curl -s ipecho.net/plain")
+        shell(cmd: "curl -s https://ipinfo.io/ip")
         let real_ip = cmd_result
         
         let company = UserDefaults.standard.string(forKey: "Company")
@@ -454,7 +454,7 @@ class ViewController: NSViewController {
     func check_status_init() {
         let hostname = hostname_field.stringValue
         
-        shell(cmd: "curl -s ipecho.net/plain")
+        shell(cmd: "curl -s https://ipinfo.io/ip")
         let real_ip = cmd_result
         
         shell(cmd: "check=$( dig +short " + hostname + " ); echo \"$check\"")
